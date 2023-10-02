@@ -10,8 +10,8 @@ package Entidades;
  * @author Usuario
  */
 public class Especialidad {
-    int idEspecialidad;
-    String especialidad;
+    private int idEspecialidad;
+    private String especialidad;
 
     @Override
     public String toString() {
