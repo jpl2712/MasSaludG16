@@ -5,10 +5,8 @@
  */
 package Entidades;
 
-/**
- *
- * @author Usuario
- */
+
+
 public class Especialidad {
     
 }

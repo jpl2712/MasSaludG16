@@ -10,12 +10,14 @@ package Entidades;
  * @author Usuario
  */
 public class Afiliado {
-    int idAfiliado;
-    String nombre;
-    String apellido;
-    int dni;
-    boolean activo;
-
+    private int idAfiliado;
+    private String nombre;
+    private String apellido;
+    private int dni;
+    private boolean activo;
+    
+    
+    
     public Afiliado() {
     }
 
