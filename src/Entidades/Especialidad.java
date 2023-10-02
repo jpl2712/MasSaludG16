@@ -10,5 +10,35 @@ package Entidades;
  * @author Usuario
  */
 public class Especialidad {
-    
+    int idEspecialidad;
+    String especialidad;
+
+    @Override
+    public String toString() {
+        return "Especialidad{" + "idEspecialidad=" + idEspecialidad + ", especialidad=" + especialidad + '}';
+    }
+
+    public int getIdEspecialidad() {
+        return idEspecialidad;
+    }
+
+    public void setIdEspecialidad(int idEspecialidad) {
+        this.idEspecialidad = idEspecialidad;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public Especialidad() {
+    }
+
+    public Especialidad(int idEspecialidad, String especialidad) {
+        this.idEspecialidad = idEspecialidad;
+        this.especialidad = especialidad;
+    }
 }
