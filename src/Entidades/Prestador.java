@@ -14,26 +14,25 @@ public class Prestador {
     private int dni;
     private boolean activo;
     private Especialidad especialidad;
-    
+    private int matricula;
     
     public Prestador(){
         
     }
 
-    public Prestador(int idPrestador, String nombre, String apellido, int dni, boolean activo, Especialidad especialidad) {
-        this.idPrestador = idPrestador;
+    public Prestador(String nombre, String apellido, int dni, boolean activo, Especialidad especialidad, int matricula) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.activo = activo;
         this.especialidad = especialidad;
+        this.matricula = matricula;
     }
 
     public Prestador(String nombre, String apellido, int dni) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        
     }
 
     public int getIdPrestador() {
@@ -83,13 +82,21 @@ public class Prestador {
     public void setEspecialidad(Especialidad especialidad) {
         this.especialidad = especialidad;
     }
-    
-    
+
+    public int getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
 
     @Override
     public String toString() {
-        return "Prestador{" + "idPrestador=" + idPrestador + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", activo=" + activo + '}';
+        return "Prestador{" + "idPrestador=" + idPrestador + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", activo=" + activo + ", especialidad=" + especialidad + ", matricula=" + matricula + '}';
     }
+
+    
     
     
     
