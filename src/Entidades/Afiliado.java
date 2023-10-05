@@ -1,23 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Entidades;
 
-/**
- *
- * @author Usuario
- */
 public class Afiliado {
+
     private int idAfiliado;
     private String nombre;
     private String apellido;
     private int dni;
     private boolean activo;
-    
-    
-    
+
     public Afiliado() {
     }
 
@@ -27,6 +17,26 @@ public class Afiliado {
         this.apellido = apellido;
         this.dni = dni;
         this.activo = activo;
+    }
+    
+    public Afiliado(int idAfiliado, String nombre, String apellido, int dni) {
+        this.idAfiliado = idAfiliado;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+    }
+
+    public Afiliado(String nombre, String apellido, int dni, boolean activo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.activo = activo;
+    }
+
+    public Afiliado(String nombre, String apellido, int dni) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
     }
 
     public int getIdAfiliado() {
@@ -69,15 +79,9 @@ public class Afiliado {
         this.activo = activo;
     }
 
-    public Afiliado(String nombre, String apellido, int dni) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-    }
-
     @Override
     public String toString() {
         return "Afiliado{" + "idAfiliado=" + idAfiliado + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", activo=" + activo + '}';
     }
-    
+
 }
