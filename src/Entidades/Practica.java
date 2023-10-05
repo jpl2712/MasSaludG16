@@ -11,12 +11,12 @@ package Entidades;
  */
 public class Practica {
     private int codigo;
-    private int practica;
+    private int copago;
     private String detalle;
 
-    public Practica(int codigo, int practica, String detalle) {
+    public Practica(int codigo, int copago, String detalle) {
         this.codigo = codigo;
-        this.practica = practica;
+        this.copago = copago;
         this.detalle = detalle;
     }
 
@@ -31,12 +31,12 @@ public class Practica {
         this.codigo = codigo;
     }
 
-    public int getPractica() {
-        return practica;
+    public int getCopago() {
+        return copago;
     }
 
-    public void setPractica(int practica) {
-        this.practica = practica;
+    public void setCopago(int copago) {
+        this.copago = copago;
     }
 
     public String getDetalle() {
@@ -49,8 +49,9 @@ public class Practica {
 
     @Override
     public String toString() {
-        return "Practica{" + "codigo=" + codigo + ", practica=" + practica + ", detalle=" + detalle + '}';
+        return "Practica{" + "codigo=" + codigo + ", copago=" + copago + ", detalle=" + detalle + '}';
     }
+
     
     
 }
