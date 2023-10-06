@@ -5,26 +5,18 @@ import java.sql.Date;
 public class Orden {
     
     private int idOrden;
-    private int codigo;
+    private Practica codigo;
     private Date fechaEmision;
     private Date fechaVencimiento;
     private String formaPago;
     private Afiliado afiliado;
     private Prestador prestador;
+    private int cantidadPracticas;
 
     public Orden() {
     }
 
-    public Orden(int codigo, Date fechaEmision, Date fechaVencimiento, String formaPago, Afiliado afiliado, Prestador prestador) {
-        this.codigo = codigo;
-        this.fechaEmision = fechaEmision;
-        this.fechaVencimiento = fechaVencimiento;
-        this.formaPago = formaPago;
-        this.afiliado = afiliado;
-        this.prestador = prestador;
-    }
-
-    public Orden(int idOrden, int codigo, Date fechaEmision, Date fechaVencimiento, String formaPago, Afiliado afiliado, Prestador prestador) {
+    public Orden(int idOrden, Practica codigo, Date fechaEmision, Date fechaVencimiento, String formaPago, Afiliado afiliado, Prestador prestador, int cantidadPracticas) {
         this.idOrden = idOrden;
         this.codigo = codigo;
         this.fechaEmision = fechaEmision;
@@ -32,7 +24,25 @@ public class Orden {
         this.formaPago = formaPago;
         this.afiliado = afiliado;
         this.prestador = prestador;
+        this.cantidadPracticas = cantidadPracticas;
     }
+
+    public Orden(Practica codigo, Date fechaEmision, Date fechaVencimiento, Afiliado afiliado, Prestador prestador) {
+        this.codigo = codigo;
+        this.fechaEmision = fechaEmision;
+        this.fechaVencimiento = fechaVencimiento;
+        this.afiliado = afiliado;
+        this.prestador = prestador;
+    }
+
+    public Orden(Practica codigo, Afiliado afiliado, Prestador prestador, int cantidadPracticas) {
+        this.codigo = codigo;
+        this.afiliado = afiliado;
+        this.prestador = prestador;
+        this.cantidadPracticas = cantidadPracticas;
+    }
+
+    
 
     public int getIdOrden() {
         return idOrden;
@@ -42,13 +52,23 @@ public class Orden {
         this.idOrden = idOrden;
     }
 
-    public int getCodigo() {
+    public Practica getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Practica codigo) {
         this.codigo = codigo;
     }
+
+    public int getCantidadPracticas() {
+        return cantidadPracticas;
+    }
+
+    public void setCantidadPracticas(int cantidadPracticas) {
+        this.cantidadPracticas = cantidadPracticas;
+    }
+
+    
 
     public Date getFechaEmision() {
         return fechaEmision;
@@ -92,8 +112,10 @@ public class Orden {
 
     @Override
     public String toString() {
-        return "Orden{" + "idOrden=" + idOrden + ", codigo=" + codigo + ", fechaEmision=" + fechaEmision + ", fechaVencimiento=" + fechaVencimiento + ", formaPago=" + formaPago + ", afiliado=" + afiliado + ", prestador=" + prestador + '}';
+        return "Orden{" + "idOrden=" + idOrden + ", codigo=" + codigo + ", fechaEmision=" + fechaEmision + ", fechaVencimiento=" + fechaVencimiento + ", formaPago=" + formaPago + ", afiliado=" + afiliado + ", prestador=" + prestador + ", cantidadPracticas=" + cantidadPracticas + '}';
     }
+
+    
     
     
 }

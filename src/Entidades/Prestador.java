@@ -20,6 +20,11 @@ public class Prestador {
         
     }
 
+    public Prestador(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
     public Prestador(String nombre, String apellido, int dni, boolean activo, Especialidad especialidad, int matricula) {
         this.nombre = nombre;
         this.apellido = apellido;
