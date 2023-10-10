@@ -12,6 +12,7 @@ public class Orden {
     private Afiliado afiliado;
     private Prestador prestador;
     private int cantidadPracticas;
+    private double liquidacion;
 
     public Orden() {
     }
@@ -40,6 +41,14 @@ public class Orden {
         this.afiliado = afiliado;
         this.prestador = prestador;
         this.cantidadPracticas = cantidadPracticas;
+    }
+
+    public double getLiquidacion() {
+        return liquidacion;
+    }
+
+    public void setLiquidacion(double liquidacion) {
+        this.liquidacion = liquidacion;
     }
 
     
