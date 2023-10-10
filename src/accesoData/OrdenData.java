@@ -25,7 +25,7 @@ public class OrdenData {
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, orden.getCodigo());
+            ps.setInt(1, orden.getCodigo().getCodigo());
             ps.setInt(2, orden.getAfiliado().getIdAfiliado());
             ps.setInt(3, orden.getPrestador().getIdPrestador());
             ps.setString(4, orden.getFormaPago());
