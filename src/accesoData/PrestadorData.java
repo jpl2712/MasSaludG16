@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 public class PrestadorData {
 
-      private Connection con = null;
+    private Connection con = null;
     private Object prestador;
 
     public PrestadorData() {
@@ -38,7 +38,9 @@ public class PrestadorData {
                     prestador.setIdPrestador(rs.getInt(1));
                     JOptionPane.showMessageDialog(null, "Prestador Guardado");
                 }
+                ps.close();
             }
+            
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla prestador");
@@ -64,6 +66,7 @@ public class PrestadorData {
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Prestador modificado");
             } else System.out.println("error");
+            ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla prestador");
@@ -86,12 +89,13 @@ public class PrestadorData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla prestador");
         }
+        
     }
     
     
     public Prestador buscarPrestadorPorDni(int id) {
         String sql = "SELECT idPrestador, apellido, nombre, dni, activo, especialidad, matricula FROM prestador"
-                + "WHERE idPrestador = ?";
+                + " WHERE idPrestador = ?";
         Prestador prestador = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql); 
@@ -105,7 +109,7 @@ public class PrestadorData {
                     prestador.setApellido(rs.getString("apellido"));
                     prestador.setNombre(rs.getString("nombre"));
                     prestador.setDni(rs.getInt("dni"));
-                    prestador.setActivo(rs.getBoolean("true"));
+                    prestador.setActivo(Boolean.parseBoolean(rs.getString("activo")));
                     esp.setIdEspecialidad(rs.getInt("especialidad"));
                     prestador.setEspecialidad(esp);
                     prestador.setMatricula(rs.getInt("matricula"));
@@ -117,10 +121,12 @@ public class PrestadorData {
             
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla prestador");        }
-
+            JOptionPane.showMessageDialog(null,  ex);        }
+            
         return prestador;
 
     }
+
+    
 
 }
