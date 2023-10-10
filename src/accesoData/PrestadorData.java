@@ -85,6 +85,8 @@ public class PrestadorData {
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Prestador eliminado");
             }
+            
+            ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla prestador");
@@ -118,7 +120,8 @@ public class PrestadorData {
                 } else {
                     JOptionPane.showMessageDialog(null, "No existe ese prrstador");
                 }
-            
+                
+                ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,  ex);        }
