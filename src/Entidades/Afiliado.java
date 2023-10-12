@@ -11,6 +11,10 @@ public class Afiliado {
     public Afiliado() {
     }
 
+    public Afiliado(int idAfiliado) {
+        this.idAfiliado = idAfiliado;
+    }
+
     public Afiliado(int idAfiliado, String nombre, String apellido, int dni, boolean activo) {
         this.idAfiliado = idAfiliado;
         this.nombre = nombre;

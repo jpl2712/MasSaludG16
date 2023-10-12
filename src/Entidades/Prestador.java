@@ -20,6 +20,10 @@ public class Prestador {
         
     }
 
+    public Prestador(int idPrestador) {
+        this.idPrestador = idPrestador;
+    }
+
     public Prestador(String nombre, String apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
