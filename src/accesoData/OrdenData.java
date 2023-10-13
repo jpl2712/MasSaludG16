@@ -23,17 +23,18 @@ public class OrdenData {
 
     public void nuevaOrden(Orden orden) {
 
-        String sql = "INSERT INTO orden(codigo, afiliado, prestador, formaPago, fecha_Emision, fecha_Vencimiento)"
-                + "VALUES(? ,?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO orden(fecha_Emision, codigo, afiliado, prestador, fecha_Vencimiento, formaPago)"
+                + "VALUES(?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, orden.getCodigo().getCodigo());
-            ps.setInt(2, orden.getAfiliado().getIdAfiliado());
-            ps.setInt(3, orden.getPrestador().getIdPrestador());
-            ps.setString(4, orden.getFormaPago());
-            ps.setDate(5, orden.getFechaEmision());
-            ps.setDate(6, orden.getFechaVencimiento());
+            ps.setDate(1, orden.getFechaEmision());
+            ps.setInt(2, orden.getCodigo().getCodigo());
+            ps.setInt(3, orden.getAfiliado().getIdAfiliado());
+            ps.setInt(4, orden.getPrestador().getIdPrestador());
+            ps.setDate(5, orden.getFechaVencimiento());
+            ps.setString(6,orden.getFormaPago());
+      
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -50,18 +51,18 @@ public class OrdenData {
 
     public void modificarOrden(int id) {
 
-        String sql = "UPDATE orden SET codigo = ?, afiliado = ?, prestador = ?, formaPago ?, fecha_Emision = ?, fecha_Vencimiento = ? "
+        String sql = "UPDATE orden SET fecha_Emision = ?, codigo = ?, afiliado = ?, prestador ?, fecha_Emision = ?, formaPago = ? "
                 + " WHERE idOrden = ?";
 
         try {
             Orden orden = new Orden();
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, orden.getCodigo().getCodigo());
-            ps.setInt(2, orden.getAfiliado().getIdAfiliado());
-            ps.setInt(3, orden.getPrestador().getIdPrestador());
-            ps.setString(4, orden.getFormaPago());
-            ps.setDate(5, orden.getFechaEmision());
-            ps.setDate(6, orden.getFechaVencimiento());
+            ps.setDate(1, orden.getFechaEmision());
+            ps.setInt(2, orden.getCodigo().getCodigo());
+            ps.setInt(3, orden.getAfiliado().getIdAfiliado());
+            ps.setInt(4, orden.getPrestador().getIdPrestador());
+            ps.setDate(5, orden.getFechaVencimiento());
+            ps.setString(6, orden.getFormaPago());
             ps.setInt(7, id);
             ps.executeUpdate();
 
