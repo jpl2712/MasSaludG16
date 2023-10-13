@@ -17,6 +17,25 @@ public class Orden {
     public Orden() {
     }
 
+    public Orden(Practica codigo, Date fechaEmision, Date fechaVencimiento, String formaPago, Afiliado afiliado, Prestador prestador) {
+        this.codigo = codigo;
+        this.fechaEmision = fechaEmision;
+        this.fechaVencimiento = fechaVencimiento;
+        this.formaPago = formaPago;
+        this.afiliado = afiliado;
+        this.prestador = prestador;
+    }
+    
+    public Orden(int idOrden, Practica codigo, Date fechaEmision, Date fechaVencimiento, String formaPago, Afiliado afiliado, Prestador prestador) {
+        this.idOrden = idOrden;
+        this.codigo = codigo;
+        this.fechaEmision = fechaEmision;
+        this.fechaVencimiento = fechaVencimiento;
+        this.formaPago = formaPago;
+        this.afiliado = afiliado;
+        this.prestador = prestador;
+    }
+
     public Orden(int idOrden, Practica codigo, Date fechaEmision, Date fechaVencimiento, String formaPago, Afiliado afiliado, Prestador prestador, int cantidadPracticas) {
         this.idOrden = idOrden;
         this.codigo = codigo;
