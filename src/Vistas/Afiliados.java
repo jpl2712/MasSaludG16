@@ -31,6 +31,10 @@ public class Afiliados extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
