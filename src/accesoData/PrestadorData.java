@@ -1,5 +1,6 @@
 package accesoData;
 
+import Entidades.Afiliado;
 import Entidades.Especialidad;
 import Entidades.Prestador;
 import java.sql.Connection;
@@ -7,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class PrestadorData {
@@ -130,6 +133,34 @@ public class PrestadorData {
 
     }
 
-    
+    public List<Prestador> listarPrestadores() {
+
+        String sql = "SELECT `idPrestador`, `nombre`, `apellido` FROM `prestador` WHERE activo = 1 ";
+        
+        ArrayList<Prestador> prestadores = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Prestador pres = new Prestador();
+                pres.setIdPrestador(rs.getInt("idPrestador"));
+                pres.setNombre(rs.getString("nombre"));
+                pres.setApellido(rs.getString("apellido"));
+                
+                pres.setActivo(true);
+
+                prestadores.add(pres);
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla prestador");
+        }
+
+        return prestadores;
+    }
 
 }

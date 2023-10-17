@@ -49,7 +49,7 @@ public class Practica {
 
     @Override
     public String toString() {
-        return "Practica{" + "codigo=" + codigo + ", copago=" + copago + ", detalle=" + detalle + '}';
+        return codigo + " - " + detalle ;
     }
 
     

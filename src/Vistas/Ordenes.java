@@ -5,6 +5,22 @@
  */
 package Vistas;
 
+import Entidades.Afiliado;
+import Entidades.Orden;
+import Entidades.Practica;
+import Entidades.Prestador;
+import accesoData.AfiliadoData;
+import accesoData.OrdenData;
+import accesoData.PracticaData;
+import accesoData.PrestadorData;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.DefaultComboBoxModel;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.sql.Date;
+import java.time.LocalDate;
+
 /**
  *
  * @author Usuario
@@ -16,6 +32,10 @@ public class Ordenes extends javax.swing.JInternalFrame {
      */
     public Ordenes() {
         initComponents();
+        ListaDesplegablePrestadores();
+        ListaDesplegablePracticas();
+
+        this.setTitle("Autorización de Ordenes");
     }
 
     /**
@@ -27,25 +47,260 @@ public class Ordenes extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        orden_dniAfiliado = new javax.swing.JTextField();
+        orden_ApellidoAfiliado = new javax.swing.JTextField();
+        orden_nombreAfiliado = new javax.swing.JTextField();
+        orden_buscarAf_xDNI = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jComboBox3 = new javax.swing.JComboBox<>();
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+
+        jLabel1.setText("Afiliado :");
+
+        jLabel2.setText("Prestador :");
+
+        jLabel3.setText("Practica :");
+
+        jLabel4.setText("Fecha de Emision :");
+
+        jLabel5.setText("Forma de Pago :");
+
+        orden_dniAfiliado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orden_dniAfiliadoActionPerformed(evt);
+            }
+        });
+
+        orden_buscarAf_xDNI.setText("Buscar");
+        orden_buscarAf_xDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orden_buscarAf_xDNIActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jDateChooser1.setDateFormatString("yyyy-MMM-dd");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta Debito", "Tarjeta Credito", "Cuenta Corriente" }));
+
+        jButton1.setText("Autorizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(18, 18, 18)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(orden_dniAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(orden_buscarAf_xDNI))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(orden_ApellidoAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(orden_nombreAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, 246, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(orden_dniAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orden_buscarAf_xDNI))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(orden_ApellidoAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orden_nombreAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void orden_dniAfiliadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orden_dniAfiliadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_orden_dniAfiliadoActionPerformed
+
+    private void orden_buscarAf_xDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orden_buscarAf_xDNIActionPerformed
+        // BUSCAR AFILIADO POR DNI
+        try {
+            int dni = Integer.parseInt(orden_dniAfiliado.getText());
+            AfiliadoData buscarAf = new AfiliadoData();
+            Afiliado afiliado = buscarAf.buscarAfiliadoPorDni(dni);
+
+            orden_ApellidoAfiliado.setText(afiliado.getApellido());
+            orden_nombreAfiliado.setText(afiliado.getNombre());
+
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un número de DNI válido.");
+        }
+
+    }//GEN-LAST:event_orden_buscarAf_xDNIActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //AUTORIZACION DE ORDEN
+
+        try {
+            int dni = Integer.parseInt(orden_dniAfiliado.getText());
+            
+            Prestador prestadorSeleccionado = (Prestador) jComboBox1.getSelectedItem();
+            Practica practicaSelec = (Practica) jComboBox3.getSelectedItem();
+
+            
+            AfiliadoData buscarAf = new AfiliadoData();
+            Afiliado afiliado = buscarAf.buscarAfiliadoPorDni(dni);
+
+            java.util.Date fechaEmisionUtil = jDateChooser1.getDate();
+
+            if (fechaEmisionUtil == null) {
+                JOptionPane.showMessageDialog(this, "Debes seleccionar una fecha de emisión válida.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            java.sql.Date fechaEmisionSql = new java.sql.Date(fechaEmisionUtil.getTime());
+
+            java.sql.Date fechaVencimiento = calcularFechaVencimiento(fechaEmisionSql);
+
+            String formaPago = (String) jComboBox2.getSelectedItem();
+
+            //Practica codigo, Date fechaEmision, Date fechaVencimiento, String formaPago, Afiliado afiliado, Prestador prestador
+            Orden orden = new Orden(practicaSelec, fechaEmisionSql, fechaVencimiento, formaPago, afiliado, prestadorSeleccionado);
+
+            OrdenData ordenD = new OrdenData();
+            ordenD.nuevaOrden(orden);
+
+            //Limpiar Campos
+            orden_dniAfiliado.setText("");
+            orden_ApellidoAfiliado.setText("");
+            orden_nombreAfiliado.setText("");
+            jDateChooser1.setDate(null);
+            jComboBox1.setSelectedIndex(-1);
+            jComboBox3.setSelectedIndex(-1);
+            jComboBox2.setSelectedIndex(-1);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "El DNI debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<Prestador> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<Practica> jComboBox3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField orden_ApellidoAfiliado;
+    private javax.swing.JButton orden_buscarAf_xDNI;
+    private javax.swing.JTextField orden_dniAfiliado;
+    private javax.swing.JTextField orden_nombreAfiliado;
     // End of variables declaration//GEN-END:variables
+
+    private void ListaDesplegablePrestadores() {
+
+        PrestadorData prestadorData = new PrestadorData();
+        List<Prestador> prestadores = prestadorData.listarPrestadores();
+        jComboBox1.removeAllItems();
+
+        for (Prestador prestador : prestadores) {
+            jComboBox1.addItem(prestador);
+        }
+    }
+
+    private void ListaDesplegablePracticas() {
+
+        PracticaData practicaD = new PracticaData();
+
+        List<Practica> listarPracticas = practicaD.listarPracticas();
+        jComboBox3.removeAllItems();
+
+        for (Practica practicas : listarPracticas) {
+            jComboBox3.addItem(practicas);
+        }
+
+    }
+
+    private Date calcularFechaVencimiento(Date fechaEmision) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fechaEmision);
+        calendar.add(Calendar.MONTH, 1); // Agregar un mes
+        return new java.sql.Date(calendar.getTimeInMillis());
+
+    }
+
 }

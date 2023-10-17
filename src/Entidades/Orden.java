@@ -1,6 +1,6 @@
 package Entidades;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Orden {
     
@@ -142,6 +142,9 @@ public class Orden {
     public String toString() {
         return "Orden{" + "idOrden=" + idOrden + ", codigo=" + codigo + ", fechaEmision=" + fechaEmision + ", fechaVencimiento=" + fechaVencimiento + ", formaPago=" + formaPago + ", afiliado=" + afiliado + ", prestador=" + prestador + ", cantidadPracticas=" + cantidadPracticas + '}';
     }
+
+    
+    
 
     
     

@@ -188,5 +188,32 @@ public class PracticaData {
         return liquidacionXprestador;
 
     }
+    public List<Practica> listarPracticas() {
+
+        String sql = "SELECT `Copago`, `codigo`, `detalle` FROM `practicas` ";
+        
+        ArrayList<Practica> practicas = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Practica practica = new Practica();
+                practica.setCopago(rs.getInt("Copago"));
+                practica.setCodigo(rs.getInt("codigo"));
+                practica.setDetalle(rs.getString("detalle"));
+              
+                practicas.add(practica);
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla practica ");
+        }
+
+        return practicas;
+    }
 
 }

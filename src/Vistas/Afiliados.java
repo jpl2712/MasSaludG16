@@ -53,6 +53,10 @@ public class Afiliados extends javax.swing.JInternalFrame {
         jBGuardar = new javax.swing.JButton();
         jBNuevo = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         jLabel2.setText("Apellido");
 
         jLabel3.setText("Dni");
@@ -259,7 +263,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         // TODO add your handling code here:
         try{
-            Integer dni = Integer.parseInt(jTDni.getText());
+            int dni = Integer.parseInt(jTDni.getText());
             String nombre = jTNombre.getText();
             String apellido = jTApellido.getText();
             if(nombre.isEmpty() || apellido.isEmpty()){
@@ -273,7 +277,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
                 afiliadoData.nuevoAfiliado(afiliadoActual);
                 
                 
-            }else{
+            } /*else{
                 
                 afiliadoActual.setDni(dni);
                 afiliadoActual.setNombre(nombre);
@@ -281,11 +285,11 @@ public class Afiliados extends javax.swing.JInternalFrame {
                 afiliadoData.modificarAfiliadoPorDni(afiliadoActual);
            
                 
-            }
+} */
             
             
         }catch(NumberFormatException nfe){
-            JOptionPane.showMessageDialog(null, "Debd ingresar un número valido");
+            JOptionPane.showMessageDialog(null, "Debe ingresar un número valido");
         }
         
         

@@ -5,6 +5,7 @@ import Entidades.Orden;
 import Entidades.Practica;
 import Entidades.Prestador;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,11 +29,12 @@ public class OrdenData {
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setDate(1, orden.getFechaEmision());
+            
+            ps.setDate(1, (Date) orden.getFechaEmision());
             ps.setInt(2, orden.getCodigo().getCodigo());
             ps.setInt(3, orden.getAfiliado().getIdAfiliado());
             ps.setInt(4, orden.getPrestador().getIdPrestador());
-            ps.setDate(5, orden.getFechaVencimiento());
+            ps.setDate(5, (Date) orden.getFechaVencimiento());
             ps.setString(6,orden.getFormaPago());
       
             ps.executeUpdate();
@@ -57,11 +59,11 @@ public class OrdenData {
         try {
             Orden orden = new Orden();
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setDate(1, orden.getFechaEmision());
+            ps.setDate(1, (Date) orden.getFechaEmision());
             ps.setInt(2, orden.getCodigo().getCodigo());
             ps.setInt(3, orden.getAfiliado().getIdAfiliado());
             ps.setInt(4, orden.getPrestador().getIdPrestador());
-            ps.setDate(5, orden.getFechaVencimiento());
+            ps.setDate(5, (Date) orden.getFechaVencimiento());
             ps.setString(6, orden.getFormaPago());
             ps.setInt(7, id);
             ps.executeUpdate();
