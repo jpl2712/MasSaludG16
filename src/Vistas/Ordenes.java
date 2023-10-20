@@ -61,6 +61,7 @@ public class Ordenes extends javax.swing.JInternalFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jComboBox3 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -81,6 +82,10 @@ public class Ordenes extends javax.swing.JInternalFrame {
                 orden_dniAfiliadoActionPerformed(evt);
             }
         });
+
+        orden_ApellidoAfiliado.setEditable(false);
+
+        orden_nombreAfiliado.setEditable(false);
 
         orden_buscarAf_xDNI.setText("Buscar");
         orden_buscarAf_xDNI.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +108,13 @@ public class Ordenes extends javax.swing.JInternalFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Nueva Practica");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -138,9 +150,11 @@ public class Ordenes extends javax.swing.JInternalFrame {
                                     .addComponent(orden_ApellidoAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(orden_nombreAfiliado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, 246, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton2)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, 246, Short.MAX_VALUE)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -163,7 +177,9 @@ public class Ordenes extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -173,7 +189,7 @@ public class Ordenes extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -209,11 +225,10 @@ public class Ordenes extends javax.swing.JInternalFrame {
 
         try {
             int dni = Integer.parseInt(orden_dniAfiliado.getText());
-            
+
             Prestador prestadorSeleccionado = (Prestador) jComboBox1.getSelectedItem();
             Practica practicaSelec = (Practica) jComboBox3.getSelectedItem();
 
-            
             AfiliadoData buscarAf = new AfiliadoData();
             Afiliado afiliado = buscarAf.buscarAfiliadoPorDni(dni);
 
@@ -252,9 +267,33 @@ public class Ordenes extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //como nota
+
+        try {
+            String codigoStr = JOptionPane.showInputDialog(this, "Ingrese el código de la práctica:");
+            String detalle = JOptionPane.showInputDialog(this, "Ingrese la descripción de la práctica:");
+            String copagoStr = JOptionPane.showInputDialog(this, "Ingrese el copago de la práctica:");
+
+            int codigo = Integer.parseInt(codigoStr);
+            int copago = Integer.parseInt(copagoStr);
+
+            PracticaData nuevaP = new PracticaData();
+            Practica practica = new Practica(codigo, copago, detalle);
+            nuevaP.guardarPractica(practica);
+            
+            ListaDesplegablePracticas();
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Error: Ingresa valores válidos para el código y el copago.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<Prestador> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<Practica> jComboBox3;

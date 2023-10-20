@@ -277,7 +277,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
                 afiliadoData.nuevoAfiliado(afiliadoActual);
                 
                 
-            } /*else{
+            }else{
                 
                 afiliadoActual.setDni(dni);
                 afiliadoActual.setNombre(nombre);
@@ -285,7 +285,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
                 afiliadoData.modificarAfiliadoPorDni(afiliadoActual);
            
                 
-} */
+            }
             
             
         }catch(NumberFormatException nfe){

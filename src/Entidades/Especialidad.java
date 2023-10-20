@@ -13,7 +13,7 @@ public class Especialidad {
 
     @Override
     public String toString() {
-        return "Especialidad{" + "idEspecialidad=" + idEspecialidad + ", especialidad=" + especialidad + '}';
+        return idEspecialidad + " - " + especialidad ;
     }
 
     public int getIdEspecialidad() {

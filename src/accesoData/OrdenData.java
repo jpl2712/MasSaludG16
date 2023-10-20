@@ -214,7 +214,44 @@ public class OrdenData {
         return ordenes;
     
 }
+ public  List<Orden> listarOrdenXidOrden( int id) {
+    
+    String sql = " SELECT `fecha_Emision`, `codigo`, `Afiliado`, `Prestador`, `fecha_Vencimiento`, `formaPago` FROM `orden` WHERE idOrden = ? ";
+        ArrayList<Orden> ordenes = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
 
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Orden orden = new Orden();
+                Afiliado afiliado = new Afiliado();
+                Prestador prestador = new Prestador();
+                Practica practica = new Practica();
+                
+                prestador.setIdPrestador(rs.getInt("prestador"));
+                afiliado.setIdAfiliado(rs.getInt("afiliado"));
+                
+                practica.setCodigo(rs.getInt("codigo"));
+                orden.setFechaEmision(rs.getDate("fecha_Emision"));
+                orden.setFechaVencimiento(rs.getDate("fecha_Vencimiento"));
+                orden.setFormaPago(rs.getString("formaPago"));
+
+                orden.setPrestador(prestador);
+                orden.setAfiliado(afiliado);
+                orden.setCodigo(practica);
+   
+                ordenes.add(orden);
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ordenes " + ex.getMessage());
+        }
+
+        return ordenes;}
        
 
    
