@@ -9,13 +9,14 @@ package Vistas;
  *
  * @author Usuario
  */
-public class ConsultaOrden extends javax.swing.JInternalFrame {
+public class ConsultaPractica extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ConsultaOrden
      */
-    public ConsultaOrden() {
+    public ConsultaPractica() {
         initComponents();
+        this.setTitle(" Consultas por práctica ");
     }
 
     /**
