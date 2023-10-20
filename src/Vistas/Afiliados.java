@@ -243,7 +243,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         try{
-            Integer dni = Integer.parseInt(jTDni.getText());
+            int dni = Integer.parseInt(jTDni.getText());
             afiliadoActual = afiliadoData.buscarAfiliadoPorDni(dni);
             if(afiliadoActual != null){
                 jTNombre.setText(afiliadoActual.getNombre());
@@ -262,9 +262,10 @@ public class Afiliados extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         if(afiliadoActual != null){
-            afiliadoData.bajaAfiliadoPorDni(afiliadoActual.getIdAfiliado());
+            afiliadoData.bajaAfiliadoPorDni(afiliadoActual.getDni());
             afiliadoActual = null;
             limpiarCampos();
+            
         }else{
             JOptionPane.showMessageDialog(null, "No hay un afiliado seleccionado");
         }
@@ -275,7 +276,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         // TODO add your handling code here:
         try{
-            Integer dni = Integer.parseInt(jTDni.getText());
+            int dni = Integer.parseInt(jTDni.getText());
             String nombre = jTNombre.getText();
             String apellido = jTApellido.getText();
             if(nombre.isEmpty() || apellido.isEmpty()){
