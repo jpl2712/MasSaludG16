@@ -86,9 +86,7 @@ public class PracticaData {
                 practica.setCodigo(rs.getInt("codigo"));
                 practica.setDetalle(rs.getString("detalle"));
 
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe esa practica");
-            }
+            } 
             ps.close();
 
         } catch (SQLException ex) {

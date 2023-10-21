@@ -18,10 +18,9 @@ public class ConsultaPractica extends javax.swing.JInternalFrame {
     /**
      * Creates new form ConsultaOrden
      */
-    
     Practica practica = new Practica();
     PracticaData practicaData = new PracticaData();
-    
+
     public ConsultaPractica() {
         initComponents();
         this.setTitle(" Consultas por practica ");
@@ -129,18 +128,28 @@ public class ConsultaPractica extends javax.swing.JInternalFrame {
 
     private void jBCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarActionPerformed
         // TODO add your handling code here:
-        
-        int codigo = Integer.parseInt(jTCodigo.getText());
-        int copago = Integer.parseInt(jTCopago.getText());
-        String detalle = jTDetalle.getText();
-        
-        if(detalle.isEmpty()){
-            JOptionPane.showMessageDialog(null, "No puede haber campos vacíos");
-            return;
-        }
-        
-        if(chequearCodigo()){
+
+        try {
             
+            int codigo = Integer.parseInt(jTCodigo.getText());
+            int copago = Integer.parseInt(jTCopago.getText());
+            String detalle = jTDetalle.getText();
+
+            if (detalle.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No puede haber campos vacíos");
+                return;
+            }
+
+            if (chequearCodigo(codigo)) {
+                practica.setCodigo(codigo);
+                practica.setCopago(copago);
+                practica.setDetalle(detalle);
+                practicaData.guardarPractica(practica);
+                JOptionPane.showMessageDialog(null, "Practica cargada");
+            }
+
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un número valido");
         }
         
     }//GEN-LAST:event_jBCargarActionPerformed
@@ -158,30 +167,30 @@ public class ConsultaPractica extends javax.swing.JInternalFrame {
     private javax.swing.JTextPane jTDetalle;
     // End of variables declaration//GEN-END:variables
 
-    private void limpiarCampos(){
+    private void limpiarCampos() {
         jTCodigo.setText("");
         jTCopago.setText("");
-        jTDetalle.setText("");   
+        jTDetalle.setText("");
     }
-    
-    private boolean chequearCodigo(int codigo){
+
+    private boolean chequearCodigo(int codigo) {
 
         Practica practica = practicaData.buscarPractica(codigo);
-        
-        if(practica == null){
-            return true; 
-        }else{
+
+        if (practica == null) {
+            return true;
+        } else {
             JOptionPane.showMessageDialog(null, "Ya existe una practica con ese codigo");
             limpiarCampos();
-            return false; 
-        }    
+            return false;
+        }
     }
-    
-    private boolean validarTxt(String txt){
+
+    private boolean validarTxt(String txt) {
         int n = txt.length();
         boolean bandera = false;
-        for(int i = 0; i < n; i++){
-            bandera = !(txt.substring(i).equalsIgnoreCase("0") || txt.substring(i).equalsIgnoreCase("1") 
+        for (int i = 0; i < n; i++) {
+            bandera = !(txt.substring(i).equalsIgnoreCase("0") || txt.substring(i).equalsIgnoreCase("1")
                     || txt.substring(i).equalsIgnoreCase("2") || txt.substring(i).equalsIgnoreCase("3")
                     || txt.substring(i).equalsIgnoreCase("4") || txt.substring(i).equalsIgnoreCase("5")
                     || txt.substring(i).equalsIgnoreCase("6") || txt.substring(i).equalsIgnoreCase("7")
