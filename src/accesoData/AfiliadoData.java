@@ -37,7 +37,7 @@ public class AfiliadoData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 afiliado.setIdAfiliado(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Afiliado Guardado");
+                //JOptionPane.showMessageDialog(null, "Afiliado Guardado");
             }
             ps.close();
 
@@ -275,9 +275,7 @@ public class AfiliadoData {
                 afiliado.setDni(rs.getInt("dni"));
                 afiliado.setActivo(rs.getBoolean("activo"));
                 
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe ese afiliado");
-            }
+            } 
             ps.close();
 
         } catch (SQLException ex) {
