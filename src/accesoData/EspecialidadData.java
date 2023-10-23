@@ -1,4 +1,4 @@
-package accesoData;
+    package accesoData;
 
 import Entidades.Afiliado;
 import Entidades.Especialidad;
@@ -142,6 +142,7 @@ public class EspecialidadData {
                     
                 }
                 ps.close();
+                rs.close();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla" + ex);
             }
@@ -164,6 +165,50 @@ public class EspecialidadData {
                     especialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
                     especialidad.setEspecialidad(rs.getString("especialidad"));
                 }
+                ps.close();
+                rs.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla" + ex);
+            }
+        
+        return especialidad;
+    }
+    public List<Especialidad> listarEspecialidades(){
+        ArrayList<Especialidad> especialidades = new ArrayList();
+        String sql = "SELECT idEspecialidad, especialidad FROM especialidad ";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    Especialidad especialidad = new Especialidad();
+                    especialidad.setEspecialidad(rs.getString("especialidad"));
+                    especialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
+                    
+                    especialidades.add(especialidad);
+                    
+                }
+                rs.close();
+                ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla" + ex);
+            }
+        return especialidades;
+    }
+    public Especialidad buscarEspecialidadPorNombre (String espec){
+        Especialidad especialidad = null;
+        String sql = "SELECT idEspecialidad, especialidad FROM especialidad WHERE especialidad = ?";
+        
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, espec);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    especialidad = new Especialidad();
+                    especialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
+                    especialidad.setEspecialidad(rs.getString("especialidad"));
+                }
+                ps.close();
+                rs.close();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla" + ex);
             }
