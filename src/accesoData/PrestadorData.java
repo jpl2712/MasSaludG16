@@ -98,30 +98,30 @@ public class PrestadorData {
     }
     
     
-    public Prestador buscarPrestadorPorDni(int id) {
-        String sql = "SELECT idPrestador, apellido, nombre, dni, activo, especialidad, matricula FROM prestador"
-                + " WHERE idPrestador = ?";
+    public Prestador buscarPrestadorPorDni(int dni) {
+        String sql = "SELECT idPrestador, nombre, apellido, dni, activo, especialidad, matricula FROM prestador"
+                + " WHERE dni = ?";
         Prestador prestador = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql); 
-                ps.setInt(1, id);
+                ps.setInt(1, dni);
                 ResultSet rs = ps.executeQuery();
 
                 if (rs.next()) {
                     prestador = new Prestador();
                     Especialidad esp = new Especialidad();
                     prestador.setIdPrestador(rs.getInt("idPrestador"));
-                    prestador.setApellido(rs.getString("apellido"));
                     prestador.setNombre(rs.getString("nombre"));
+                    prestador.setApellido(rs.getString("apellido"));
                     prestador.setDni(rs.getInt("dni"));
-                    prestador.setActivo(Boolean.parseBoolean(rs.getString("activo")));
+                    prestador.setActivo(rs.getBoolean("activo"));
                     esp.setIdEspecialidad(rs.getInt("especialidad"));
                     prestador.setEspecialidad(esp);
                     prestador.setMatricula(rs.getInt("matricula"));
                     
                     
                 } else {
-                    JOptionPane.showMessageDialog(null, "No existe ese prrstador");
+                    JOptionPane.showMessageDialog(null, "No existe ese prestador");
                 }
                 
                 ps.close();
