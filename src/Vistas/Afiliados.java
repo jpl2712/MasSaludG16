@@ -302,7 +302,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
             
             
         }catch(NumberFormatException nfe){
-            JOptionPane.showMessageDialog(null, "Debd ingresar un número valido");
+            JOptionPane.showMessageDialog(null, "Debe ingresar un número valido");
         }
         
         
