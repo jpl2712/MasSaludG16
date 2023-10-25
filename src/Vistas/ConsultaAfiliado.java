@@ -217,7 +217,7 @@ public class ConsultaAfiliado extends javax.swing.JInternalFrame {
 
                     String dato = String.valueOf(modelo.getValueAt(jTAfiliados.getSelectedRow(), 0));
                     int id = Integer.parseInt(dato);
-                    JOptionPane.showMessageDialog(null, id);
+                    //JOptionPane.showMessageDialog(null, id);
                     AfiliadoData ad = new AfiliadoData();
                     Afiliado a = new Afiliado(id, nombre, apellido, dni);
                     ad.modificarAfiliadoPorId(a);
@@ -251,7 +251,7 @@ public class ConsultaAfiliado extends javax.swing.JInternalFrame {
 
             int id = Integer.parseInt(dato);
 
-            JOptionPane.showMessageDialog(null, id);
+            //JOptionPane.showMessageDialog(null, id);
             AfiliadoData ad = new AfiliadoData();
             ad.altaAfiliadoPorId(id);
             modelo.removeRow(jTAfiliados.getSelectedRow());
@@ -269,7 +269,7 @@ public class ConsultaAfiliado extends javax.swing.JInternalFrame {
 
             int id = Integer.parseInt(dato);
 
-            JOptionPane.showMessageDialog(null, id);
+            //JOptionPane.showMessageDialog(null, id);
             AfiliadoData ad = new AfiliadoData();
             ad.bajaAfiliadoPorId(id);
 
@@ -289,7 +289,7 @@ public class ConsultaAfiliado extends javax.swing.JInternalFrame {
 
             int id = Integer.parseInt(dato);
 
-            JOptionPane.showMessageDialog(null, id);
+            //JOptionPane.showMessageDialog(null, id);
             AfiliadoData ad = new AfiliadoData();
             ad.eliminarAfiliadoPorId(id);
 
