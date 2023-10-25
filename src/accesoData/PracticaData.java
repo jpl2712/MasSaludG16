@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class PracticaData {
@@ -214,6 +216,36 @@ public class PracticaData {
         }
 
         return practicas;
+    }
+    
+    public List<Practica> liquidacionPorPrestador(Prestador prestador){
+        List<Practica> liquidaciones = new ArrayList();
+        
+        String sql = "SELECT practicas.codigo, detalle, Copago FROM practicas "
+                + "JOIN orden ON orden.codigo = practicas.codigo "
+                + "JOIN prestador ON orden.Prestador = prestador.idPrestador "
+                + "WHERE prestador.idPrestador = ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, prestador.getIdPrestador());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Practica practica = new Practica();
+                practica.setCodigo(rs.getInt("codigo"));
+                practica.setCopago(rs.getInt("Copago"));
+                practica.setDetalle(rs.getString("detalle"));
+                
+                liquidaciones.add(practica);
+                
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla");
+        }
+        
+        
+        return liquidaciones;
     }
 
 }
