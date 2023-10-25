@@ -196,7 +196,7 @@ public class AfiliadoData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla afiliado");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla afiliado, id relacionado a una orden");
         }
 
     }
@@ -215,7 +215,7 @@ public class AfiliadoData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla afiliado");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla afiliado, id relacionado a una orden");
         }
 
     }
