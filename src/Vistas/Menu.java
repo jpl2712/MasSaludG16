@@ -219,7 +219,7 @@ public class Menu extends javax.swing.JFrame {
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
       /*  escritorio.removeAll();
         escritorio.repaint();
-        Prestador fPrestador = new Prestador();
+        PrestadorVistas fPrestador = new PrestadorVistas();
         escritorio.add(fPrestador);
         fPrestador.setVisible(true);*/
     }//GEN-LAST:event_jMenu2ActionPerformed
@@ -267,7 +267,7 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        Prestador fPrestador = new Prestador();
+        PrestadorVistas fPrestador = new PrestadorVistas();
         escritorio.add(fPrestador);
         fPrestador.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
