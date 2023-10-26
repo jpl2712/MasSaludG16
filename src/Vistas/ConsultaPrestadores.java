@@ -61,9 +61,9 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePrestador = new javax.swing.JTable();
         jrInactivos = new javax.swing.JRadioButton();
-        jBModificar = new javax.swing.JButton();
-        jBAlta = new javax.swing.JButton();
-        jBBaja = new javax.swing.JButton();
+        jbModificar = new javax.swing.JButton();
+        jbAlta = new javax.swing.JButton();
+        jbBaja = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -96,11 +96,21 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
             }
         });
 
-        jBModificar.setText("Modificar");
+        jbModificar.setText("Modificar");
 
-        jBAlta.setText("Alta");
+        jbAlta.setText("Alta");
+        jbAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAltaActionPerformed(evt);
+            }
+        });
 
-        jBBaja.setText("Baja");
+        jbBaja.setText("Baja");
+        jbBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBajaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,11 +128,11 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(jBModificar)
+                        .addComponent(jbModificar)
                         .addGap(64, 64, 64)
-                        .addComponent(jBAlta)
+                        .addComponent(jbAlta)
                         .addGap(69, 69, 69)
-                        .addComponent(jBBaja)))
+                        .addComponent(jbBaja)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,9 +146,9 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBModificar)
-                    .addComponent(jBAlta)
-                    .addComponent(jBBaja))
+                    .addComponent(jbModificar)
+                    .addComponent(jbAlta)
+                    .addComponent(jbBaja))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
@@ -151,9 +161,10 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
         borrarFilaTabla();
         jrInactivos.setSelected(false);
         cargarDatosActivos();
-        jBAlta.setEnabled(false);
-        jBModificar.setEnabled(true);
-        jBBaja.setEnabled(true);
+        jbAlta.setEnabled(false);
+        jbModificar.setEnabled(true);
+        jbBaja.setEnabled(true);
+        
         
     }//GEN-LAST:event_jrActivosActionPerformed
 
@@ -162,17 +173,54 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
         borrarFilaTabla();
         jrActivos.setSelected(false);
         cargarDatosInactivos();
-        jBAlta.setEnabled(true);
-        jBModificar.setEnabled(true);
-        jBBaja.setEnabled(false);
+        
+        jbAlta.setEnabled(true);
+        jbModificar.setEnabled(true);
+        jbBaja.setEnabled(false);
+        
     }//GEN-LAST:event_jrInactivosActionPerformed
+
+    private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
+        // TODO add your handling code here:
+        int fila = tablePrestador.getSelectedRow();
+        if (fila != -1) {
+
+            String dato = String.valueOf(modelo.getValueAt(tablePrestador.getSelectedRow(), 0));
+
+            int id = Integer.parseInt(dato);
+
+            //JOptionPane.showMessageDialog(null, id);
+            PrestadorData pd = new PrestadorData();
+            
+            pd.altaPrestadorPorId(id);
+            modelo.removeRow(tablePrestador.getSelectedRow());
+        }
+    }//GEN-LAST:event_jbAltaActionPerformed
+
+    private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
+        // TODO add your handling code here:
+        int fila = tablePrestador.getSelectedRow();
+        if (fila != -1) {
+
+            String dato = String.valueOf(modelo.getValueAt(tablePrestador.getSelectedRow(), 0));
+
+            int id = Integer.parseInt(dato);
+
+            //JOptionPane.showMessageDialog(null, id);
+            PrestadorData pd = new PrestadorData();
+            
+            pd.bajaPrestadorPorId(id);
+            modelo.removeRow(tablePrestador.getSelectedRow());
+        }
+        
+    }//GEN-LAST:event_jbBajaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAlta;
-    private javax.swing.JButton jBBaja;
-    private javax.swing.JButton jBModificar;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAlta;
+    private javax.swing.JButton jbBaja;
+    private javax.swing.JButton jbModificar;
     private javax.swing.JRadioButton jrActivos;
     private javax.swing.JRadioButton jrInactivos;
     private javax.swing.JTable tablePrestador;
@@ -184,7 +232,7 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Dni");
-        modelo.addColumn("Especialidad");
+        //modelo.addColumn("Especialidad");
         modelo.addColumn("Matricula");
         modelo.addColumn("Estado");
 
@@ -206,7 +254,7 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
                 p.getNombre(),
                 p.getApellido(),
                 p.getDni(),
-                p.getEspecialidad().getEspecialidad(),
+                //p.getEspecialidad().getEspecialidad(),
                 p.getMatricula(),
                 p.isActivo()
             });
@@ -225,7 +273,7 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
                 p.getNombre(),
                 p.getApellido(),
                 p.getDni(),
-                p.getEspecialidad().getEspecialidad(),
+                //p.getEspecialidad().getEspecialidad(),
                 p.getMatricula(),
                 p.isActivo()
             });
