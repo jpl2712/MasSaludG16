@@ -9,13 +9,43 @@ package Vistas;
  *
  * @author Usuario
  */
+import Entidades.Prestador;
+import accesoData.PrestadorData;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class ConsultaPrestadores extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ConsultaPrestadores
      */
+    
+    //private List<Prestador> listaP;
+    private List<Prestador> listaActivos;
+    private List<Prestador> listaInactivos;
+    private PrestadorData prestadorData;
+    private DefaultTableModel modelo;
+    
+    
     public ConsultaPrestadores() {
         initComponents();
+        
+        this.setTitle(" Consulta Prestadores ");
+        
+        prestadorData = new PrestadorData();
+        listaActivos = prestadorData.listarPrestadoresActivos();
+        listaInactivos = prestadorData.listarPrestadoresInactivos();
+        
+        modelo = new DefaultTableModel() {
+            public boolean isCellEditable(int fila, int columna) {
+                return false;
+            }
+
+        };
+        armarCabecera();
     }
 
     /**
@@ -27,25 +57,214 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jrActivos = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablePrestador = new javax.swing.JTable();
+        jrInactivos = new javax.swing.JRadioButton();
+        jBModificar = new javax.swing.JButton();
+        jBAlta = new javax.swing.JButton();
+        jBBaja = new javax.swing.JButton();
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+
+        jrActivos.setText("Prestadores Activos");
+        jrActivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrActivosActionPerformed(evt);
+            }
+        });
+
+        tablePrestador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablePrestador);
+
+        jrInactivos.setText("Prestadores Inactivos");
+        jrInactivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrInactivosActionPerformed(evt);
+            }
+        });
+
+        jBModificar.setText("Modificar");
+
+        jBAlta.setText("Alta");
+
+        jBBaja.setText("Baja");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jrActivos)
+                        .addGap(90, 90, 90)
+                        .addComponent(jrInactivos))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(jBModificar)
+                        .addGap(64, 64, 64)
+                        .addComponent(jBAlta)
+                        .addGap(69, 69, 69)
+                        .addComponent(jBBaja)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrActivos)
+                    .addComponent(jrInactivos))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBModificar)
+                    .addComponent(jBAlta)
+                    .addComponent(jBBaja))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jrActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrActivosActionPerformed
+        // TODO add your handling code here:
+        
+        borrarFilaTabla();
+        jrInactivos.setSelected(false);
+        cargarDatosActivos();
+        jBAlta.setEnabled(false);
+        jBModificar.setEnabled(true);
+        jBBaja.setEnabled(true);
+        
+    }//GEN-LAST:event_jrActivosActionPerformed
+
+    private void jrInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrInactivosActionPerformed
+        // TODO add your handling code here:
+        borrarFilaTabla();
+        jrActivos.setSelected(false);
+        cargarDatosInactivos();
+        jBAlta.setEnabled(true);
+        jBModificar.setEnabled(true);
+        jBBaja.setEnabled(false);
+    }//GEN-LAST:event_jrInactivosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAlta;
+    private javax.swing.JButton jBBaja;
+    private javax.swing.JButton jBModificar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton jrActivos;
+    private javax.swing.JRadioButton jrInactivos;
+    private javax.swing.JTable tablePrestador;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabecera() {
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Dni");
+        modelo.addColumn("Especialidad");
+        modelo.addColumn("Matricula");
+        modelo.addColumn("Estado");
+
+        for (Object it : filaCabecera) {
+            modelo.addColumn(it);
+        }
+        tablePrestador.setModel(modelo);
+
+    }
+
+    private void cargarDatosActivos() {
+     
+        Prestador selec = (Prestador) jrActivos.getSelectedIcon();
+        listaActivos = prestadorData.listarPrestadoresActivos();
+
+        for (Prestador p : listaActivos) {
+            modelo.addRow(new Object[]{
+                p.getIdPrestador(),
+                p.getNombre(),
+                p.getApellido(),
+                p.getDni(),
+                p.getEspecialidad().getEspecialidad(),
+                p.getMatricula(),
+                p.isActivo()
+            });
+        }
+    }
+
+    private void cargarDatosInactivos() {
+
+        PrestadorData pData = new PrestadorData();
+        Prestador selec = (Prestador) jrActivos.getSelectedIcon();
+        listaInactivos = pData.listarPrestadoresInactivos();
+
+        for (Prestador p : listaInactivos) {
+            modelo.addRow(new Object[]{
+                p.getIdPrestador(),
+                p.getNombre(),
+                p.getApellido(),
+                p.getDni(),
+                p.getEspecialidad().getEspecialidad(),
+                p.getMatricula(),
+                p.isActivo()
+            });
+        }
+    }
+
+    private void borrarFilaTabla() {
+        int indice = modelo.getRowCount() - 1;
+        for (int i = indice; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
+
+    private boolean chequearDni(int dni) {
+        PrestadorData pData = new PrestadorData();
+        Prestador prestador = pData.buscarPrestadorPorDni(dni);
+                
+        if (prestador == null) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Ya existe un prestador con ese dni");
+//            limpiarCampos();
+            return false;
+        }
+    }
+
+    private boolean validarTxt(String txt) {
+        int n = txt.length();
+        boolean bandera = false;
+        for (int i = 0; i < n; i++) {
+            bandera = !(txt.substring(i).equalsIgnoreCase("0") || txt.substring(i).equalsIgnoreCase("1")
+                    || txt.substring(i).equalsIgnoreCase("2") || txt.substring(i).equalsIgnoreCase("3")
+                    || txt.substring(i).equalsIgnoreCase("4") || txt.substring(i).equalsIgnoreCase("5")
+                    || txt.substring(i).equalsIgnoreCase("6") || txt.substring(i).equalsIgnoreCase("7")
+                    || txt.substring(i).equalsIgnoreCase("8") || txt.substring(i).equalsIgnoreCase("9"));
+        }
+        return bandera;
+    }
+
+
+
 }

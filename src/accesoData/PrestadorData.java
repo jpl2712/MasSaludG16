@@ -127,7 +127,7 @@ public class PrestadorData {
                 ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,  ex);        }
+            JOptionPane.showMessageDialog(null,  "Error al acceder a la tabla prestador" + ex);        }
             
         return prestador;
 
@@ -158,6 +158,75 @@ public class PrestadorData {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla prestador");
+        }
+
+        return prestadores;
+    }
+    
+    
+    public List<Prestador> listarPrestadoresActivos() {
+
+        String sql = "SELECT idPrestador, nombre, apellido, dni, especialidad, matricula  "
+                + "FROM prestador WHERE activo = 1";
+        ArrayList<Prestador> prestadores = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Prestador p = new Prestador();
+                Especialidad esp = new Especialidad();
+         
+                p.setIdPrestador(rs.getInt("idPrestador"));
+                p.setNombre(rs.getString("nombre"));
+                p.setApellido(rs.getString("apellido"));
+                p.setDni(rs.getInt("dni"));
+                //esp.setIdEspecialidad(rs.getInt("especialidad"));
+                p.setMatricula(rs.getInt("matricula"));
+                p.setActivo(true);
+
+                prestadores.add(p);
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "!!!Error al acceder a la tabla prestador");
+        }
+
+        return prestadores;
+    }
+    
+    public List<Prestador> listarPrestadoresInactivos() {
+
+        String sql = "SELECT idPrestador, nombre, apellido, dni, especialidad, matricula  "
+                + "FROM prestador WHERE activo = 0";
+        ArrayList<Prestador> prestadores = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Prestador p = new Prestador();
+                Especialidad esp = new Especialidad();
+                EspecialidadData espD = new EspecialidadData();
+                p.setIdPrestador(rs.getInt("idPrestador"));
+                p.setNombre(rs.getString("nombre"));
+                p.setApellido(rs.getString("apellido"));
+                p.setDni(rs.getInt("dni"));
+                //p.setEpecialidad.getEspecialidad(respD.buscarEspecialidad(0)
+                p.setMatricula(rs.getInt("matricula"));   
+                p.setActivo(false);
+
+                prestadores.add(p);
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "&&&&Error al acceder a la tabla prestador");
         }
 
         return prestadores;
