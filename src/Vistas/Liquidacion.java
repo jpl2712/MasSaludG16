@@ -184,7 +184,9 @@ public class Liquidacion extends javax.swing.JInternalFrame {
             jcPrestador.addItem(prestador);
         }
     }
-   
+    private void limpiar2(){
+    
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
