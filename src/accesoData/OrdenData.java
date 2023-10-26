@@ -83,8 +83,11 @@ public class OrdenData {
     
     public List<Orden> listarOrdenesPorAfiliado(Afiliado afiliado) {
         List<Orden> ordenes = new ArrayList();
-        String sql = "SELECT fecha_Emision, codigo, Afiliado, Prestador, fecha_Vencimiento, formaPago "
-                + "FROM orden WHERE afiliado = ? ";
+        String sql = "SELECT o.idOrden, o.fecha_Emision, o.codigo, a.nombre AS afiliado_nombre, a.apellido AS afiliado_apellido, p.nombre AS prestador_nombre, p.apellido AS prestador_apellido, o.fecha_Vencimiento, o.formaPago "
+                + "FROM orden o "
+                + "JOIN afiliado a ON o.Afiliado = a.idAfiliado "
+                + "JOIN prestador p ON o.Prestador = p.idPrestador "
+                + "WHERE o.afiliado = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, afiliado.getIdAfiliado());
@@ -95,16 +98,19 @@ public class OrdenData {
                 Practica practica = new Practica();
                 Afiliado afil = new Afiliado();
                 Prestador prestador = new Prestador();
+
+                orden.setIdOrden(rs.getInt("idOrden"));
                 orden.setFechaEmision(rs.getDate("fecha_Emision"));
                 practica.setCodigo(rs.getInt("codigo"));
                 orden.setCodigo(practica);
-                afil.setIdAfiliado(rs.getInt("Afiliado"));
+                afil.setNombre(rs.getString("afiliado_nombre"));
+                afil.setApellido(rs.getString("afiliado_apellido"));
                 orden.setAfiliado(afil);
-                prestador.setIdPrestador(rs.getInt("Prestador"));
+                prestador.setNombre(rs.getString("prestador_nombre"));
+                prestador.setApellido(rs.getString("prestador_apellido"));
                 orden.setPrestador(prestador);
                 orden.setFechaVencimiento(rs.getDate("fecha_Vencimiento"));
                 orden.setFormaPago(rs.getString("formaPago"));
-
                 ordenes.add(orden);
 
             }
@@ -142,10 +148,11 @@ public class OrdenData {
 
         ArrayList<Orden> ordenes = new ArrayList();
 
-        String sql = "SELECT orden.idOrden, orden.afiliado, orden.prestador, orden.fecha_Emision, "
-                + " orden.fecha_Vencimiento, orden.formaPago FROM orden JOIN afiliado ON orden.Afiliado = afiliado.idAfiliado "
-                + "JOIN prestador ON prestador.idPrestador = orden.Prestador "
-                + "JOIN especialidad ON especialidad.idEspecialidad = prestador.especialidad "
+        String sql = "SELECT o.idOrden, o.fecha_Emision, o.codigo, a.nombre AS afiliado_nombre, a.apellido AS afiliado_apellido, p.nombre AS prestador_nombre, p.apellido AS prestador_apellido, o.fecha_Vencimiento, o.formaPago \n"
+                + "FROM orden o "
+                + "JOIN prestador p ON p.idPrestador = o.Prestador "
+                + "JOIN especialidad ON especialidad.idEspecialidad = p.especialidad "
+                + "JOIN afiliado a ON o.Afiliado = a.idAfiliado "
                 + "WHERE especialidad.idEspecialidad = ? ";
 
         try {
@@ -154,15 +161,22 @@ public class OrdenData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Orden orden = new Orden();
-                Afiliado afiliado = new Afiliado();
+                Afiliado afil = new Afiliado();
                 Prestador prestador = new Prestador();
+                Practica practica = new Practica();
+
                 orden.setIdOrden(rs.getInt("idOrden"));
-                afiliado.setIdAfiliado(rs.getInt("Afiliado"));
-                prestador.setIdPrestador(rs.getInt("Prestador"));
                 orden.setFechaEmision(rs.getDate("fecha_Emision"));
+                practica.setCodigo(rs.getInt("codigo"));
+                orden.setCodigo(practica);
+                afil.setNombre(rs.getString("afiliado_nombre"));
+                afil.setApellido(rs.getString("afiliado_apellido"));
+                orden.setAfiliado(afil);
+                prestador.setNombre(rs.getString("prestador_nombre"));
+                prestador.setApellido(rs.getString("prestador_apellido"));
+                orden.setPrestador(prestador);
                 orden.setFechaVencimiento(rs.getDate("fecha_Vencimiento"));
                 orden.setFormaPago(rs.getString("formaPago"));
-
                 ordenes.add(orden);
 
             }
@@ -214,8 +228,171 @@ public class OrdenData {
         return ordenes;
     
 }
+ public  List<Orden> listarOrdenXidOrden( int id) {
+    
+     String sql = "SELECT o.idOrden, o.fecha_Emision, o.codigo, a.nombre AS afiliado_nombre, a.apellido AS afiliado_apellido, p.nombre AS prestador_nombre, p.apellido AS prestador_apellido, o.fecha_Vencimiento, o.formaPago "
+                + "FROM orden o "
+                + "JOIN afiliado a ON o.Afiliado = a.idAfiliado "
+                + "JOIN prestador p ON o.Prestador = p.idPrestador "
+                + "WHERE o.idOrden = ? ";
+        ArrayList<Orden> ordenes = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
 
-       
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Orden orden = new Orden();
+                Afiliado afil = new Afiliado();
+                Prestador prestador = new Prestador();
+                Practica practica = new Practica();
+
+                orden.setIdOrden(rs.getInt("idOrden"));
+                orden.setFechaEmision(rs.getDate("fecha_Emision"));
+                practica.setCodigo(rs.getInt("codigo"));
+                orden.setCodigo(practica);
+                afil.setNombre(rs.getString("afiliado_nombre"));
+                afil.setApellido(rs.getString("afiliado_apellido"));
+                orden.setAfiliado(afil);
+                prestador.setNombre(rs.getString("prestador_nombre"));
+                prestador.setApellido(rs.getString("prestador_apellido"));
+                orden.setPrestador(prestador);
+                orden.setFechaVencimiento(rs.getDate("fecha_Vencimiento"));
+                orden.setFormaPago(rs.getString("formaPago"));
+                ordenes.add(orden);
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ordenes " + ex.getMessage());
+        }
+
+        return ordenes;
+ }
+       public List<Orden> listarOrdenesPorPrestador(Prestador prestador) {
+        List<Orden> ordenes = new ArrayList();
+        String sql = "SELECT o.idOrden, o.fecha_Emision, o.codigo, a.nombre AS afiliado_nombre, a.apellido AS afiliado_apellido, p.nombre AS prestador_nombre, p.apellido AS prestador_apellido, o.fecha_Vencimiento, o.formaPago "
+                + "FROM orden o "
+                + "JOIN afiliado a ON o.Afiliado = a.idAfiliado "
+                + "JOIN prestador p ON o.Prestador = p.idPrestador "
+                + "WHERE o.prestador = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, prestador.getIdPrestador());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Orden orden = new Orden();
+                Practica practica = new Practica();
+                Afiliado afil = new Afiliado();
+
+                orden.setIdOrden(rs.getInt("idOrden"));
+                orden.setFechaEmision(rs.getDate("fecha_Emision"));
+                practica.setCodigo(rs.getInt("codigo"));
+                orden.setCodigo(practica);
+                afil.setNombre(rs.getString("afiliado_nombre"));
+                afil.setApellido(rs.getString("afiliado_apellido"));
+                orden.setAfiliado(afil);
+                prestador.setNombre(rs.getString("prestador_nombre"));
+                prestador.setApellido(rs.getString("prestador_apellido"));
+                orden.setPrestador(prestador);
+                orden.setFechaVencimiento(rs.getDate("fecha_Vencimiento"));
+                orden.setFormaPago(rs.getString("formaPago"));
+                ordenes.add(orden);
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla " + ex);
+        }
+
+        return ordenes;
+
+    }
+
+    public List<Orden> listarOrdenesPorPractica(Practica practica) {
+        List<Orden> ordenes = new ArrayList();
+        String sql = "SELECT o.idOrden, o.fecha_Emision, o.codigo, a.nombre AS afiliado_nombre, a.apellido AS afiliado_apellido, p.nombre AS prestador_nombre, p.apellido AS prestador_apellido, o.fecha_Vencimiento, o.formaPago "
+                + "FROM orden o "
+                + "JOIN afiliado a ON o.Afiliado = a.idAfiliado "
+                + "JOIN prestador p ON o.Prestador = p.idPrestador "
+                + "WHERE o.codigo = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, practica.getCodigo());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Orden orden = new Orden();
+
+                Afiliado afil = new Afiliado();
+                Prestador prestador = new Prestador();
+                orden.setIdOrden(rs.getInt("idOrden"));
+                orden.setFechaEmision(rs.getDate("fecha_Emision"));
+                practica.setCodigo(rs.getInt("codigo"));
+                orden.setCodigo(practica);
+                afil.setNombre(rs.getString("afiliado_nombre"));
+                afil.setApellido(rs.getString("afiliado_apellido"));
+                orden.setAfiliado(afil);
+                prestador.setNombre(rs.getString("prestador_nombre"));
+                prestador.setApellido(rs.getString("prestador_apellido"));
+                orden.setPrestador(prestador);
+                orden.setFechaVencimiento(rs.getDate("fecha_Vencimiento"));
+                orden.setFormaPago(rs.getString("formaPago"));
+                ordenes.add(orden);
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla " + ex);
+        }
+
+        return ordenes;
+
+    }
+
+    public List<Orden> listarOrdenesPorFecha(Date fechaEmision) {
+        List<Orden> ordenes = new ArrayList();
+        String sql = "SELECT o.idOrden, o.fecha_Emision, o.codigo, a.nombre AS afiliado_nombre, a.apellido AS afiliado_apellido, p.nombre AS prestador_nombre, p.apellido AS prestador_apellido, o.fecha_Vencimiento, o.formaPago "
+                + "FROM orden o "
+                + "JOIN afiliado a ON o.Afiliado = a.idAfiliado "
+                + "JOIN prestador p ON o.Prestador = p.idPrestador "
+                + "WHERE o.fecha_Emision = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDate(1, fechaEmision);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Orden orden = new Orden();
+                Practica practica = new Practica();
+                Afiliado afil = new Afiliado();
+                Prestador prestador = new Prestador();
+                orden.setIdOrden(rs.getInt("idOrden"));
+                orden.setFechaEmision(rs.getDate("fecha_Emision"));
+                practica.setCodigo(rs.getInt("codigo"));
+                orden.setCodigo(practica);
+                afil.setNombre(rs.getString("afiliado_nombre"));
+                afil.setApellido(rs.getString("afiliado_apellido"));
+                orden.setAfiliado(afil);
+                prestador.setNombre(rs.getString("prestador_nombre"));
+                prestador.setApellido(rs.getString("prestador_apellido"));
+                orden.setPrestador(prestador);
+                orden.setFechaVencimiento(rs.getDate("fecha_Vencimiento"));
+                orden.setFormaPago(rs.getString("formaPago"));
+                ordenes.add(orden);
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla " + ex);
+        }
+
+        return ordenes;
+
+    }
 
    
 }

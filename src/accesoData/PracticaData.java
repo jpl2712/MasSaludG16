@@ -72,6 +72,36 @@ public class PracticaData {
         }
 
     }
+    
+    public Practica buscarPractica(int codigo) {
+
+        String sql = "SELECT Copago, codigo, detalle FROM practicas WHERE codigo = ?";
+        Practica practica = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, codigo);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                practica = new Practica();
+                practica.setCopago(rs.getInt("Copago"));
+                practica.setCodigo(rs.getInt("codigo"));
+                practica.setDetalle(rs.getString("detalle"));
+
+            } 
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla practicas");
+        }
+
+        return practica;
+    }
+    
+    
+    
+    
+    
 
     public void eliminarPractica(Practica practica) {
 

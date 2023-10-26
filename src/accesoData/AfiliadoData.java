@@ -37,7 +37,7 @@ public class AfiliadoData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 afiliado.setIdAfiliado(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Afiliado Guardado");
+                //JOptionPane.showMessageDialog(null, "Afiliado Guardado");
             }
             ps.close();
 
@@ -52,6 +52,27 @@ public class AfiliadoData {
                 + "WHERE idAfiliado = ?";
 
         try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, afiliado.getNombre());
+            ps.setString(2, afiliado.getApellido());
+            ps.setInt(3, afiliado.getDni());
+            ps.setInt(4, afiliado.getIdAfiliado());
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Afiliado modificado");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla afiliado");
+        }
+    }
+    
+    public void modificarAfiliadoPorId(int id) {
+
+        String sql = "UPDATE afiliado SET nombre = ?, apellido = ?, dni = ? "
+                + "WHERE idAfiliado = ?";
+
+        try {
+            Afiliado afiliado = new Afiliado();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, afiliado.getNombre());
             ps.setString(2, afiliado.getApellido());
@@ -275,9 +296,7 @@ public class AfiliadoData {
                 afiliado.setDni(rs.getInt("dni"));
                 afiliado.setActivo(rs.getBoolean("activo"));
                 
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe ese afiliado");
-            }
+            } 
             ps.close();
 
         } catch (SQLException ex) {
@@ -375,4 +394,17 @@ public class AfiliadoData {
 
         return afiliados;
     }
+    
+    
+//    o.getCodigo(),
+//                o.getPrestador(),
+//                o.getCantidadPracticas(),
+//                o.getFechaEmision(),
+//                o.getFechaVencimiento(),
+//                o.getFormaPago()
+    
+    
+    
+    
+    
 }
