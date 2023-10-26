@@ -289,7 +289,7 @@ public class ConsultaAfiliado extends javax.swing.JInternalFrame {
 
             int id = Integer.parseInt(dato);
 
-            //JOptionPane.showMessageDialog(null, id);
+            JOptionPane.showMessageDialog(null, id);
             AfiliadoData ad = new AfiliadoData();
             ad.eliminarAfiliadoPorId(id);
 
