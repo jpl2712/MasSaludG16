@@ -51,7 +51,6 @@ public class Afiliados extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         jBEliminar = new javax.swing.JButton();
         jBGuardar = new javax.swing.JButton();
-        jBLimpiar = new javax.swing.JButton();
         jBCargar = new javax.swing.JButton();
 
         setClosable(true);
@@ -88,13 +87,13 @@ public class Afiliados extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5))
+                .addGap(19, 19, 19))
         );
 
         jBBuscar.setText("Buscar");
@@ -129,9 +128,9 @@ public class Afiliados extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jRActivo)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jBEliminar.setText("Eliminar");
@@ -148,13 +147,6 @@ public class Afiliados extends javax.swing.JInternalFrame {
             }
         });
 
-        jBLimpiar.setText("Limpiar");
-        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBLimpiarActionPerformed(evt);
-            }
-        });
-
         jBCargar.setText("Cargar");
         jBCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,22 +159,19 @@ public class Afiliados extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jBCargar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addComponent(jBEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(45, 45, 45)
+                .addComponent(jBCargar)
+                .addGap(33, 33, 33)
                 .addComponent(jBGuardar)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBLimpiar)
                     .addComponent(jBEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBGuardar)
                     .addComponent(jBCargar))
@@ -242,17 +231,17 @@ public class Afiliados extends javax.swing.JInternalFrame {
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         // TODO add your handling code here:
         
-        try{
+        try {
             int dni = Integer.parseInt(jTDni.getText());
             afiliadoActual = afiliadoData.buscarAfiliadoPorDni(dni);
-            if(afiliadoActual != null){
+            if (afiliadoActual != null) {
                 jTNombre.setText(afiliadoActual.getNombre());
                 jTApellido.setText(afiliadoActual.getApellido());
                 jRActivo.setSelected(afiliadoActual.isActivo());
                 
             }
             
-        }catch(NumberFormatException ex){
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número valido");
         }
         
@@ -261,98 +250,87 @@ public class Afiliados extends javax.swing.JInternalFrame {
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // TODO add your handling code here:
         
-        if(afiliadoActual != null){
+        if (afiliadoActual != null) {
             afiliadoData.bajaAfiliadoPorDni(afiliadoActual.getDni());
             afiliadoActual = null;
             limpiarCampos();
             
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "No hay un afiliado seleccionado");
         }
-            
         
+
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             int dni = Integer.parseInt(jTDni.getText());
             String nombre = jTNombre.getText();
             String apellido = jTApellido.getText();
-            if(nombre.isEmpty() || apellido.isEmpty()){
+            if (nombre.isEmpty() || apellido.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No puede haber campos vacíos");
                 return;
             }
             Boolean estado = jRActivo.isSelected();
-            if(afiliadoActual == null){
+            if (afiliadoActual == null) {
                 
                 afiliadoActual = new Afiliado(nombre, apellido, dni, estado);
                 afiliadoData.nuevoAfiliado(afiliadoActual);
                 
-                
-            }else{
+            } else {
                 
                 afiliadoActual.setDni(dni);
                 afiliadoActual.setNombre(nombre);
                 afiliadoActual.setApellido(apellido);
                 afiliadoData.modificarAfiliadoPorDni(afiliadoActual);
-           
                 
             }
             
-            
-        }catch(NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un número valido");
         }
-        
-        
-        
-    }//GEN-LAST:event_jBGuardarActionPerformed
-
-    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
-        // TODO add your handling code here:
         limpiarCampos();
-        afiliadoActual = null; 
         
-    }//GEN-LAST:event_jBLimpiarActionPerformed
+
+    }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarActionPerformed
         // TODO add your handling code here:
         
-        try{
+        try {
             String nombre = jTNombre.getText();
             String apellido = jTApellido.getText();
             int dni = Integer.parseInt(jTDni.getText());
             boolean estado = jRActivo.isSelected();
             
-            if(nombre.isEmpty() || apellido.isEmpty()){
+            if (nombre.isEmpty() || apellido.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No puede haber campos vacíos");
                 return;
             }
             Boolean v1 = validarTxt(nombre);
             Boolean v2 = validarTxt(apellido);
             
-            if(v1 && v2){
-               if(chequearDni(dni)){
-                
-                afiliadoActual = new Afiliado(nombre, apellido, dni, estado);
-                afiliadoActual.setDni(dni);
-                afiliadoActual.setNombre(nombre);
-                afiliadoActual.setApellido(apellido);
-                afiliadoData.nuevoAfiliado(afiliadoActual);
-                JOptionPane.showMessageDialog(null, "Afiliado cargado");
-                
-                } 
-            }else{
+            if (v1 && v2) {
+                if (chequearDni(dni)) {
+                    
+                    afiliadoActual = new Afiliado(nombre, apellido, dni, estado);
+                    afiliadoActual.setDni(dni);
+                    afiliadoActual.setNombre(nombre);
+                    afiliadoActual.setApellido(apellido);
+                    afiliadoData.nuevoAfiliado(afiliadoActual);
+                    JOptionPane.showMessageDialog(null, "Afiliado cargado");
+                    
+                }                
+            } else {
                 JOptionPane.showMessageDialog(null, "Nombre o Apellido invalido");
                 limpiarCampos();
             }
             
-        }catch(NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un número valido");
         }
-        
-        
+        limpiarCampos();
     }//GEN-LAST:event_jBCargarActionPerformed
 
 
@@ -361,7 +339,6 @@ public class Afiliados extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBCargar;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBGuardar;
-    private javax.swing.JButton jBLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -377,7 +354,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTNombre;
     // End of variables declaration//GEN-END:variables
     
-    private void limpiarCampos(){
+    private void limpiarCampos() {
         jTNombre.setText("");
         jTApellido.setText("");
         jTDni.setText("");
@@ -385,22 +362,22 @@ public class Afiliados extends javax.swing.JInternalFrame {
         
     }
     
-    private boolean chequearDni(int dni){
+    private boolean chequearDni(int dni) {
         Afiliado afiliado = afiliadoData.buscarAfiliadoGeneralPorDni(dni);
-        if(afiliado == null){
-            return true; 
-        }else{
+        if (afiliado == null) {
+            return true;            
+        } else {
             JOptionPane.showMessageDialog(null, "Ya existe un afiliado con ese dni");
             limpiarCampos();
-            return false; 
-        }    
+            return false;            
+        }        
     }
     
-    private boolean validarTxt(String txt){
+    private boolean validarTxt(String txt) {
         int n = txt.length();
         boolean bandera = false;
-        for(int i = 0; i < n; i++){
-            bandera = !(txt.substring(i).equalsIgnoreCase("0") || txt.substring(i).equalsIgnoreCase("1") 
+        for (int i = 0; i < n; i++) {
+            bandera = !(txt.substring(i).equalsIgnoreCase("0") || txt.substring(i).equalsIgnoreCase("1")
                     || txt.substring(i).equalsIgnoreCase("2") || txt.substring(i).equalsIgnoreCase("3")
                     || txt.substring(i).equalsIgnoreCase("4") || txt.substring(i).equalsIgnoreCase("5")
                     || txt.substring(i).equalsIgnoreCase("6") || txt.substring(i).equalsIgnoreCase("7")
@@ -409,9 +386,4 @@ public class Afiliados extends javax.swing.JInternalFrame {
         return bandera;
     }
     
-    
- 
-    
-
-
 }
