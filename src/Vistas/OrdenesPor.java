@@ -259,6 +259,7 @@ public class OrdenesPor extends javax.swing.JInternalFrame {
             idOrden = Integer.parseInt(jTextField1.getText());
             resultados.addAll(ordenData.listarOrdenXidOrden(idOrden));
         }
+        
         if (!jT_Afiliado.getText().isEmpty()) {
             dni = Integer.parseInt(jT_Afiliado.getText());
             AfiliadoData buscarAf = new AfiliadoData();

@@ -61,7 +61,6 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePrestador = new javax.swing.JTable();
         jrInactivos = new javax.swing.JRadioButton();
-        jbModificar = new javax.swing.JButton();
         jbAlta = new javax.swing.JButton();
         jbBaja = new javax.swing.JButton();
 
@@ -96,8 +95,6 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
             }
         });
 
-        jbModificar.setText("Modificar");
-
         jbAlta.setText("Alta");
         jbAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,9 +124,7 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
                         .addGap(38, 38, 38)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jbModificar)
-                        .addGap(64, 64, 64)
+                        .addGap(174, 174, 174)
                         .addComponent(jbAlta)
                         .addGap(69, 69, 69)
                         .addComponent(jbBaja)))
@@ -144,12 +139,11 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
                     .addComponent(jrInactivos))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbModificar)
                     .addComponent(jbAlta)
                     .addComponent(jbBaja))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,7 +156,7 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
         jrInactivos.setSelected(false);
         cargarDatosActivos();
         jbAlta.setEnabled(false);
-        jbModificar.setEnabled(true);
+        
         jbBaja.setEnabled(true);
         
         
@@ -175,7 +169,7 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
         cargarDatosInactivos();
         
         jbAlta.setEnabled(true);
-        jbModificar.setEnabled(true);
+        
         jbBaja.setEnabled(false);
         
     }//GEN-LAST:event_jrInactivosActionPerformed
@@ -220,7 +214,6 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBaja;
-    private javax.swing.JButton jbModificar;
     private javax.swing.JRadioButton jrActivos;
     private javax.swing.JRadioButton jrInactivos;
     private javax.swing.JTable tablePrestador;
@@ -232,7 +225,7 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Dni");
-        //modelo.addColumn("Especialidad");
+      //  modelo.addColumn("Especialidad");
         modelo.addColumn("Matricula");
         modelo.addColumn("Estado");
 
@@ -254,7 +247,7 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
                 p.getNombre(),
                 p.getApellido(),
                 p.getDni(),
-                //p.getEspecialidad().getEspecialidad(),
+              //  p.getEspecialidad().getEspecialidad(),
                 p.getMatricula(),
                 p.isActivo()
             });
@@ -273,7 +266,7 @@ public class ConsultaPrestadores extends javax.swing.JInternalFrame {
                 p.getNombre(),
                 p.getApellido(),
                 p.getDni(),
-                //p.getEspecialidad().getEspecialidad(),
+            //    p.getEspecialidad().getEspecialidad(),
                 p.getMatricula(),
                 p.isActivo()
             });

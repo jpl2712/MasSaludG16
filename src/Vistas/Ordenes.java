@@ -287,6 +287,7 @@ public class Ordenes extends javax.swing.JInternalFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error: Ingresa valores válidos para el código y el copago.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+      
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

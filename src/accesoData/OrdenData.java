@@ -354,6 +354,7 @@ public class OrdenData {
     }
 
     public List<Orden> listarOrdenesPorFecha(Date fechaEmision) {
+        
         List<Orden> ordenes = new ArrayList();
         String sql = "SELECT o.idOrden, o.fecha_Emision, o.codigo, a.nombre AS afiliado_nombre, a.apellido AS afiliado_apellido, p.nombre AS prestador_nombre, p.apellido AS prestador_apellido, o.fecha_Vencimiento, o.formaPago "
                 + "FROM orden o "

@@ -5,6 +5,11 @@
  */
 package Vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
+
 /**
  *
  * @author Usuario
@@ -15,6 +20,8 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setTitle(" MasSalud ");
+        this.setLocationRelativeTo(null);
+        this.setSize(1080,720);
     }
 
     

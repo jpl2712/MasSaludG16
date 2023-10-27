@@ -165,8 +165,10 @@ public class PrestadorData {
 
     public List<Prestador> listarPrestadoresActivos() {
 
-        String sql = "SELECT idPrestador, nombre, apellido, dni, especialidad, matricula  "
-                + "FROM prestador WHERE activo = 1";
+        String sql = "SELECT idPrestador, nombre, apellido, dni, e.especialidad, matricula  "
+                + "FROM prestador p "
+                +"JOIN especialidad e ON e.idEspecialidad = p.especialidad "
+                + "WHERE activo = 1";
         ArrayList<Prestador> prestadores = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -181,7 +183,7 @@ public class PrestadorData {
                 p.setNombre(rs.getString("nombre"));
                 p.setApellido(rs.getString("apellido"));
                 p.setDni(rs.getInt("dni"));
-                //esp.setIdEspecialidad(rs.getInt("especialidad"));
+             //   esp.setEspecialidad(rs.getString("especialidad"));
                 p.setMatricula(rs.getInt("matricula"));
                 p.setActivo(true);
 
@@ -199,8 +201,10 @@ public class PrestadorData {
 
     public List<Prestador> listarPrestadoresInactivos() {
 
-        String sql = "SELECT idPrestador, nombre, apellido, dni, especialidad, matricula  "
-                + "FROM prestador WHERE activo = 0";
+         String sql = "SELECT idPrestador, nombre, apellido, dni, e.especialidad, matricula  "
+                + "FROM prestador p "
+                +"JOIN especialidad e ON e.idEspecialidad = p.especialidad "
+                + "WHERE activo = 0 ";
         ArrayList<Prestador> prestadores = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -210,12 +214,12 @@ public class PrestadorData {
             while (rs.next()) {
                 Prestador p = new Prestador();
                 Especialidad esp = new Especialidad();
-                EspecialidadData espD = new EspecialidadData();
+                
                 p.setIdPrestador(rs.getInt("idPrestador"));
                 p.setNombre(rs.getString("nombre"));
                 p.setApellido(rs.getString("apellido"));
                 p.setDni(rs.getInt("dni"));
-                //p.setEpecialidad.getEspecialidad(respD.buscarEspecialidad(0)
+             //   esp.setEspecialidad(rs.getString("especialidad"));
                 p.setMatricula(rs.getInt("matricula"));
                 p.setActivo(false);
 

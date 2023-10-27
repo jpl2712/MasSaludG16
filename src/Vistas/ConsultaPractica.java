@@ -8,6 +8,7 @@ package Vistas;
 import Entidades.Afiliado;
 import Entidades.Practica;
 import accesoData.PracticaData;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,20 +24,19 @@ public class ConsultaPractica extends javax.swing.JInternalFrame {
      */
     Practica practica = new Practica();
     PracticaData practicaData = new PracticaData();
-    
+
     private List<Practica> listaP;
-    private Afiliado afiliadoActual; 
+    private Afiliado afiliadoActual;
     private DefaultTableModel modelo = new DefaultTableModel();
 
     public ConsultaPractica() {
         initComponents();
         this.setTitle(" Consultas por practica ");
-        
+
         practica = new Practica();
         practicaData = new PracticaData();
         listaP = practicaData.listarPracticas();
-        
-        
+
         cargaPractica();
         armarCabeceraTabla();
     }
@@ -143,6 +143,11 @@ public class ConsultaPractica extends javax.swing.JInternalFrame {
             }
         });
 
+        cboxPractica.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboxPracticaItemStateChanged(evt);
+            }
+        });
         cboxPractica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboxPracticaActionPerformed(evt);
@@ -210,15 +215,23 @@ public class ConsultaPractica extends javax.swing.JInternalFrame {
 
         jTPracticas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane6.setViewportView(jTPracticas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -247,7 +260,7 @@ public class ConsultaPractica extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         try {
-            
+
             int codigo = Integer.parseInt(jTCodigo.getText());
             int copago = Integer.parseInt(jTCopago.getText());
             String detalle = jTDetalle.getText();
@@ -268,16 +281,42 @@ public class ConsultaPractica extends javax.swing.JInternalFrame {
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un número valido");
         }
-        
+        cargaPractica();
+
     }//GEN-LAST:event_jBCargarActionPerformed
 
     private void cboxPracticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxPracticaActionPerformed
         // TODO add your handling code here:
-        borrarFilaTabla();
-        cargaDatosPractica();
-        
-        
+
+
     }//GEN-LAST:event_cboxPracticaActionPerformed
+
+    private void cboxPracticaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboxPracticaItemStateChanged
+
+        List<Practica> resultados = new ArrayList<>();
+    Practica practicaSelec = (Practica) cboxPractica.getSelectedItem();
+
+    if (practicaSelec != null) { 
+        int codigo = practicaSelec.getCodigo();
+        modelo.setRowCount(0);
+
+        resultados.add(practicaData.buscarPractica(codigo));
+
+        if (!resultados.isEmpty()) { 
+            System.out.println("Entra en el método practica");
+            for (Practica prac : resultados) {
+                Object[] fila = {
+                    prac.getCodigo(),
+                    prac.getDetalle(),
+                    prac.getCopago()
+                };
+                modelo.addRow(fila);
+            }
+        }
+    } else {
+        System.out.println("Practica seleccionada es null");
+    }
+    }//GEN-LAST:event_cboxPracticaItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -335,35 +374,33 @@ public class ConsultaPractica extends javax.swing.JInternalFrame {
         }
         return bandera;
     }
-    
-    private void cargaPractica(){
-        for(Practica item: listaP){
+
+    private void cargaPractica() {
+        for (Practica item : listaP) {
             cboxPractica.addItem(item);
         }
     }
-    
-    private void armarCabeceraTabla(){
+
+    private void armarCabeceraTabla() {
         modelo.addColumn("Código");
         modelo.addColumn("Copago");
         modelo.addColumn("Descripción");
         jTPracticas.setModel(modelo);
     }
-    
-    private void borrarFilaTabla(){
-        int indice = modelo.getRowCount() -1;
-        
-        for(int i = indice; i >= 0; i--){
+
+    private void borrarFilaTabla() {
+        int indice = modelo.getRowCount() - 1;
+
+        for (int i = indice; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
-    
-    private void cargaDatosPractica(){
+
+    /* private void cargaDatosPractica(){
         Practica selec = (Practica)cboxPractica.getSelectedItem();
         //listaP = practicaData.listarPracticas();
         for(Practica p : listaP){
             modelo.addRow(new Object[] {p.getCodigo(), p.getCopago(), p.getDetalle()});
         }
-    }
-
-   
+    }*/
 }

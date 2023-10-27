@@ -254,8 +254,8 @@ public class PracticaData {
         String sql = "SELECT practicas.codigo, detalle, Copago FROM practicas "
                 + "JOIN orden ON orden.codigo = practicas.codigo "
                 + "JOIN prestador ON orden.Prestador = prestador.idPrestador "
-                + "WHERE prestador.idPrestador = ?";
-        
+                + "WHERE prestador.idPrestador = ? ";
+        //+"WHERE fecha_Emision = ? "
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, prestador.getIdPrestador());
