@@ -91,11 +91,8 @@ public class PrestadorVistas extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jbBuscar = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jREstado = new javax.swing.JRadioButton();
-        jLabel8 = new javax.swing.JLabel();
-        jtId = new javax.swing.JTextField();
         jtEspecialidad = new javax.swing.JTextField();
 
         jMenu1.setText("jMenu1");
@@ -169,26 +166,11 @@ public class PrestadorVistas extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton5.setText("Limpiar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         jLabel7.setText("Estado");
 
         jREstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jREstadoActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("IdPrestador");
-
-        jtId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtIdActionPerformed(evt);
             }
         });
 
@@ -203,94 +185,85 @@ public class PrestadorVistas extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 321, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(25, 25, 25)
-                        .addComponent(jButton5))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jAgregar)
-                        .addGap(29, 29, 29)
-                        .addComponent(jButton2)
-                        .addGap(258, 258, 258))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jREstado)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jREstado)
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                                            .addComponent(jTApellido, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTMatricula, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jButton2)
+                                                .addGap(71, 71, 71)
+                                                .addComponent(jButton3))
+                                            .addComponent(jtEspecialidad, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(118, 118, 118))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jtEspecialidad, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTApellido, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTDni, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTMatricula, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(25, 25, 25)
+                                .addGap(22, 22, 22)
+                                .addComponent(jTDni, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
                                 .addComponent(jbBuscar)
-                                .addGap(28, 28, 28))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(43, 43, 43)
-                        .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addContainerGap())))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jbBuscar))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jbBuscar))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addComponent(jTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTMatricula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7)
                     .addComponent(jREstado))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAgregar)
                     .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5))
-                .addContainerGap(133, Short.MAX_VALUE))
+                    .addComponent(jButton3))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -308,41 +281,61 @@ public class PrestadorVistas extends javax.swing.JInternalFrame {
         List<Especialidad> especialidadesCargadas = ed.listarEspecialidades();
         try{ 
         Integer dni = Integer.parseInt(jTDni.getText());
+        // validar dni
+        List<Prestador> prestadores = pd.listarPrestadores();
+        for(Prestador elemento: prestadores){
+            if(elemento.getDni()==dni){
+                JOptionPane.showMessageDialog(this, "Dni asociado a otro prestador");
+                return;
+            }
+        }
+        
         Integer matricula = Integer.parseInt(jTMatricula.getText());
-        String nombre = jtNombre.getText();
-        String apellido = jTApellido.getText();
-        String espec = jtEspecialidad.getText();
+        // validar matricula
+        for(Prestador elemento: prestadores){
+            if(elemento.getMatricula()==matricula){
+                JOptionPane.showMessageDialog(this, "Matricula asociada a otro prestador");
+                return;
+            }
+        }
+        
+        String nombre = jtNombre.getText().toUpperCase();
+        String apellido = jTApellido.getText().toUpperCase();
+        String espec = jtEspecialidad.getText().toUpperCase();
         if(nombre.isEmpty() || apellido.isEmpty() || espec.isEmpty()){
             JOptionPane.showMessageDialog(this,"No puede haber campos vacios");
             return;
         }
         Boolean estado = jREstado.isSelected();
-        for(Especialidad elem : especialidadesCargadas){
-            if(elem.getEspecialidad().equals(espec)){
-                especialidad = new Especialidad(elem.getIdEspecialidad()); // elem.getIdEspecialidad() es un int
-                prestadorActual = new Prestador(nombre,apellido,dni,estado,especialidad,matricula);
-                pd.guardarPrestador(prestadorActual);
-                
-                break;
-            }else{
-                especialidad = new Especialidad(espec);
-                ed.guardarEspecialidad(especialidad);
-                Especialidad especialidadNueva = new Especialidad();
-                especialidadNueva = ed.buscarEspecialidadPorNombre(espec);
-                prestadorActual = new Prestador(nombre,apellido,dni,estado,especialidadNueva,matricula);
-                pd.guardarPrestador(prestadorActual);
-                
-                break;
-            }
+        Boolean validarEspec = false;
+        
+        for(Especialidad elem: especialidadesCargadas){
+            if(elem.getEspecialidad().equalsIgnoreCase(espec)){
+                validarEspec = true;
+                break;            
+            }       
         }
         
-        
+        if( validarEspec == false){
+            especialidad = new Especialidad(espec);
+            ed.guardarEspecialidad(especialidad);
+            Especialidad especialidadNueva = ed.buscarEspecialidadPorNombre(espec);
+            System.out.println(especialidadNueva.getIdEspecialidad());        
+            prestadorActual = new Prestador(nombre,apellido,dni,estado,especialidadNueva,matricula);
+            pd.guardarPrestador(prestadorActual);
+        }else{
+            especialidad = ed.buscarEspecialidadPorNombre(espec);
+            
+            prestadorActual = new Prestador(nombre,apellido,dni,estado,especialidad,matricula);
+            pd.guardarPrestador(prestadorActual);
+        }
         
         
        }catch(NumberFormatException nft){
            JOptionPane.showMessageDialog(this, "Ingresar un dato valido");
        }
-        
+       
+       limpiar();
       
     }//GEN-LAST:event_jAgregarActionPerformed
 
@@ -366,8 +359,8 @@ public class PrestadorVistas extends javax.swing.JInternalFrame {
                 
                 jtEspecialidad.setText(es.getEspecialidad());
                 jREstado.setSelected(prestadorActual.isActivo());            
-                String i = null;
-                jtId.setText(i.valueOf(prestadorActual.getIdPrestador()));
+              //  String i = null;
+               // jtId.setText(i.valueOf(prestadorActual.getIdPrestador()));
                 
                 
             }
@@ -387,39 +380,33 @@ public class PrestadorVistas extends javax.swing.JInternalFrame {
         jTMatricula.setText("");
         jtEspecialidad.setText("");
         jTDni.setText("");
-        jtId.setText("");
+    //    jtId.setText("");
         jREstado.setSelected(false);
             
         }
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        limpiar();
-        
-        prestadorActual = null;
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void jTDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDniActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTDniActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
-     /*   if(prestadorActual!= null){
+
+        /*   if(prestadorActual!= null){
             pd.eliminarPrestador(prestadorActual.getIdPrestador());
             prestadorActual = null;
         }else{
             JOptionPane.showMessageDialog(this, "Campo vacio");
         
         }*/
-     try{
-        Integer dni = Integer.parseInt(jTDni.getText());
-        prestadorActual = null;
+        try {
+            Integer dni = Integer.parseInt(jTDni.getText());
+            prestadorActual = null;
 
-        prestadorActual = pd.buscarPrestadorPorDni(dni);
-        if (prestadorActual != null) {
-            pd.eliminarPrestador(prestadorActual.getIdPrestador());
-        }}catch(NumberFormatException n){
+            prestadorActual = pd.buscarPrestadorPorDni(dni);
+            if (prestadorActual != null) {
+                pd.eliminarPrestador(prestadorActual.getIdPrestador());
+            }
+        } catch (NumberFormatException n) {
             JOptionPane.showMessageDialog(this, "Ingresar un dni");
         }
 
@@ -430,45 +417,53 @@ public class PrestadorVistas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jREstadoActionPerformed
 
-    private void jtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtIdActionPerformed
-
     private void jtEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEspecialidadActionPerformed
         // TODO add your handling code here:
-      
-        
+
+
     }//GEN-LAST:event_jtEspecialidadActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
         List<Especialidad> especialidadesCargadas = new ArrayList();
         especialidadesCargadas = ed.listarEspecialidades();
-        if(prestadorActual != null){
-            prestadorActual.setApellido(jTApellido.getText());
-            prestadorActual.setNombre(jtNombre.getText());
+        if (prestadorActual != null) {
+            prestadorActual.setApellido(jTApellido.getText().toUpperCase());
+            prestadorActual.setNombre(jtNombre.getText().toUpperCase());
             prestadorActual.setDni(Integer.parseInt(jTDni.getText()));
             prestadorActual.setActivo(isSelected);
             prestadorActual.setMatricula(Integer.parseInt(jTMatricula.getText()));
-            for(Especialidad elem : especialidadesCargadas){
-                if(elem.getEspecialidad().equalsIgnoreCase(jtEspecialidad.getText())){
-                    prestadorActual.setEspecialidad(elem);
-                    pd.modificarPrestador(prestadorActual);
-                    break;
-                }else{
-                    especialidad = new Especialidad(jtEspecialidad.getText());
-                    ed.guardarEspecialidad(especialidad);
-                    Especialidad especialidadNueva = new Especialidad();
-                    especialidadNueva = ed.buscarEspecialidadPorNombre(jtEspecialidad.getText());
-                    prestadorActual.setEspecialidad(especialidadNueva);
-                    pd.modificarPrestador(prestadorActual);
+            if (prestadorActual.getNombre().isEmpty() || prestadorActual.getApellido().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios");
+                return;
+            }
+
+            Boolean validarEspec = false;
+
+            for (Especialidad elem : especialidadesCargadas) {
+                if (elem.getEspecialidad().equalsIgnoreCase(jtEspecialidad.getText())) {
+                    validarEspec = true;
                     break;
                 }
             }
-        }else{
+
+            if (validarEspec == false) {
+                especialidad = new Especialidad(jtEspecialidad.getText().toUpperCase());
+                ed.guardarEspecialidad(especialidad);
+                Especialidad especialidadNueva = ed.buscarEspecialidadPorNombre(jtEspecialidad.getText().toUpperCase());
+                prestadorActual.setEspecialidad(especialidadNueva);
+                pd.modificarPrestador(prestadorActual);
+            } else {
+                especialidad = ed.buscarEspecialidadPorNombre(jtEspecialidad.getText());
+
+                prestadorActual.setEspecialidad(especialidad);
+                pd.modificarPrestador(prestadorActual);
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Buscar un prestador");
         }
+        limpiar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTApellidoActionPerformed
@@ -482,7 +477,6 @@ public class PrestadorVistas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jAgregar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -490,7 +484,6 @@ public class PrestadorVistas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jList2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JRadioButton jREstado;
@@ -500,7 +493,6 @@ public class PrestadorVistas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTMatricula;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JTextField jtEspecialidad;
-    private javax.swing.JTextField jtId;
     private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
 }

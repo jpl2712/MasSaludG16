@@ -204,7 +204,7 @@ public class EspecialidadData {
             ps.close();
             rs.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla" + ex);
+            JOptionPane.showMessageDialog(null, "Error al ingresar a la tabla especialidad" + ex);
         }
 
         return especialidad;
