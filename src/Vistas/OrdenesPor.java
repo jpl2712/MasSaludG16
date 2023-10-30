@@ -60,8 +60,6 @@ public class OrdenesPor extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        Modificar_orden = new javax.swing.JButton();
-        Eliminar_orden = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -144,10 +142,6 @@ public class OrdenesPor extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Ingrese o Seleccione una opcion para su Busqueda de Ordenes");
 
-        Modificar_orden.setText("Modificar Orden");
-
-        Eliminar_orden.setText("Eliminar Orden");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,18 +188,13 @@ public class OrdenesPor extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 732, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(227, 227, 227)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(Modificar_orden)
-                        .addGap(217, 217, 217)
-                        .addComponent(Eliminar_orden)))
+                        .addComponent(jLabel7)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -230,11 +219,7 @@ public class OrdenesPor extends javax.swing.JInternalFrame {
                 .addComponent(jB_BuscarOrden)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Modificar_orden)
-                    .addComponent(Eliminar_orden))
-                .addGap(44, 44, 44))
+                .addGap(103, 103, 103))
         );
 
         pack();
@@ -373,8 +358,6 @@ public class OrdenesPor extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BuscarOrden_Tabla;
-    private javax.swing.JButton Eliminar_orden;
-    private javax.swing.JButton Modificar_orden;
     private javax.swing.JButton jB_BuscarOrden;
     private javax.swing.JComboBox<Especialidad> jC_Especialidades;
     private javax.swing.JComboBox<Practica> jC_Practicas;

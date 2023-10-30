@@ -33,7 +33,13 @@ public class Menu extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icono = new ImageIcon (getClass().getResource("/Recursos/Fondo_MasSalud.jpg"));
+        Image fondo = icono.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -65,7 +71,7 @@ public class Menu extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -79,7 +85,7 @@ public class Menu extends javax.swing.JFrame {
             .addComponent(escritorio)
         );
 
-        jMenu1.setText("Afiliado");
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Afiliados.png"))); // NOI18N
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
@@ -96,7 +102,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Prestador");
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Prestadores.png"))); // NOI18N
         jMenu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu2ActionPerformed(evt);
@@ -113,7 +119,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Orden");
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ordenes.png"))); // NOI18N
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu3ActionPerformed(evt);
@@ -130,7 +136,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Consultas");
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/consultas.png"))); // NOI18N
 
         jMenuItem1.setText("Practicas");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +172,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Liquidacion");
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Liquidaciones.png"))); // NOI18N
         jMenu5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu5ActionPerformed(evt);
@@ -240,7 +246,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        escritorio.removeAll();
+       escritorio.removeAll();
         escritorio.repaint();
         ConsultaAfiliado cAfiliado = new ConsultaAfiliado ();
         escritorio.add(cAfiliado);
